@@ -16,13 +16,16 @@ public class Test{
     	System.out.println(str);
     
     String time = "2015-01-01";
+    int length = time.length();
+    System.out.println(time + " " + length + " "+ (time.length()==10));
+    
     if(time.length()>10){
     	time = time.substring(0,10)+" 23:59:59";
     }
     else{
     	time += " 23:59:59";
     }
-    int length = time.length();
+    length = time.length();
     System.out.println(time + " " + length);
     
   }
