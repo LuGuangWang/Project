@@ -55,6 +55,17 @@ public class DateUtil {
         return date;  
     }  
     
+    public static Date roundToSeconds(Date date) {
+    	return new Date(date.getTime() / 1000L * 1000L);
+    }
+    /**
+     * 获取到秒
+     * @return
+     */
+    public static Date curDate() {
+    	return roundToSeconds(new Date());
+    }
+    
     public static void main(String[] args){
     	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     	Date date = DateUtil.getCurrentDay(new Date());
@@ -65,5 +76,8 @@ public class DateUtil {
     	
     	date = DateUtil.getNextDay(new Date());
     	System.out.println(df.format(date));
+    	
+    	System.out.println(DateUtil.curDate());
+    	
     }
 }
