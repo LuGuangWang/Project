@@ -48,7 +48,22 @@ public class Test{
 	  System.out.println(str.contains("尖子"));
 	  System.out.println(str.contains("目标"));
 	  
+	  SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	  Calendar cal = Calendar.getInstance();
+	  cal.setTime(df.parse(df.format(new Date())));
+	  int currentMonth = cal.get(Calendar.MONTH)+1;
 	  
+	  if (currentMonth >= 1 && currentMonth <= 3) {
+
+	  } else if (currentMonth >= 4 && currentMonth <= 6) {
+         
+      } else if (currentMonth >= 7 && currentMonth <= 9) {
+          
+      } else if (currentMonth >= 10 && currentMonth <= 12) {
+         
+      } 
+	  
+	  System.out.println();
 	  
 	  
   }
