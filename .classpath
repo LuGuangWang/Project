@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.2/a5f29a7acaddea3f4af307e8cf2d0cc82645fd7d/joda-time-2.2.jar" sourcepath="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.2/ad622e3cfe39319ea53b183aa5615f96ff346584/joda-time-2.2-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
 	<classpathentry kind="output" path="bin"/>
+	<classpathentry sourcepath="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.2/ad622e3cfe39319ea53b183aa5615f96ff346584/joda-time-2.2-sources.jar" kind="lib" path="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.2/a5f29a7acaddea3f4af307e8cf2d0cc82645fd7d/joda-time-2.2.jar" exported="true"/>
+	<classpathentry sourcepath="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/org.apache.poi/poi/3.12/1b74a7892dc6ecb89b8b953bab1a656bf86f4051/poi-3.12-sources.jar" kind="lib" path="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/org.apache.poi/poi/3.12/8be19a6a1fa08e934a497929f360111a4d2e5115/poi-3.12.jar" exported="true"/>
+	<classpathentry sourcepath="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml/3.12/6e4a2f0a7de617f5f8cf76f3ccfb62c86856ea14/poi-ooxml-3.12-sources.jar" kind="lib" path="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml/3.12/d7a6675a9e99f351c9f3b98ca21e293d3ca12b08/poi-ooxml-3.12.jar" exported="true"/>
+	<classpathentry sourcepath="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/3f15fff45d57656685abfee9e8302bf14580044c/commons-codec-1.9-sources.jar" kind="lib" path="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml-schemas/3.12/f74d5b8b80fa17e174660c84f54d888912a97106/poi-ooxml-schemas-3.12.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/org.apache.xmlbeans/xmlbeans/2.6.0/29e80d2dd51f9dcdef8f9ffaee0d4dc1c9bbfc87/xmlbeans-2.6.0.jar" exported="true"/>
+	<classpathentry kind="lib" path="C:/Users/wangluguang/.gradle/caches/modules-2/files-2.1/stax/stax-api/1.0.1/49c100caf72d658aca8e58bd74a4ba90fa2b0d70/stax-api-1.0.1.jar" exported="true"/>
 </classpath>
