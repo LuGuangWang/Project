@@ -1,8 +1,19 @@
+buildscript {
+	 repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
 
 repositories {
     mavenCentral()
+    maven { url "https://repo.spring.io/libs-release" }
 }
 
 sourceCompatibility = 1.8
@@ -12,6 +23,8 @@ dependencies {
     compile "joda-time:joda-time:2.2"
     compile "org.apache.poi:poi:3.12"
     compile "org.apache.poi:poi-ooxml:3.12"
+    compile "org.springframework.boot:spring-boot-starter-web"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
 }
 
 jar {

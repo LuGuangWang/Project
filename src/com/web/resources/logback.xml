@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="false" scanPeriod="1800 seconds"
+	debug="false">
+	<property name="USER_HOME" value="logs" />
+	<property scope="context" name="FILE_NAME" value="project-log" />
+	<property scope="context" name="FILE_NAME_INFO" value="app-log" />
+	<timestamp key="byDay" datePattern="yyyy-MM-dd" />
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${USER_HOME}/${FILE_NAME}.log</file>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${USER_HOME}/${byDay}/${FILE_NAME}-${byDay}-%i.log.zip
+			</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>10</maxIndex>
+		</rollingPolicy>
+
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>20MB</maxFileSize>
+		</triggeringPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} -4relative [%thread] %-5level %logger{35} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	<appender name="analytics" class="ch.qos.logback.core.rolling.RollingFileAppender"> 
+		<file>${USER_HOME}/${FILE_NAME_INFO}.log</file>  
+		 <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${USER_HOME}/teacher_logs/%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxHistory>24</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize> 
+            </timeBasedFileNamingAndTriggeringPolicy> 
+        </rollingPolicy>
+	    <encoder>   
+	      <pattern>   
+	        %msg
+	      </pattern>   
+	    </encoder>  
+	    <filter class="ch.qos.logback.classic.filter.LevelFilter">   
+	      <evaluator><expression>message.contains("TEACHER_LOG")</expression></evaluator>   
+	     	<onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+	    </filter>   
+	</appender> 
+
+	<logger name="project" level="INFO" additivity="true">
+		<appender-ref ref="file" />
+		<!-- <appender-ref ref="STDOUT" /> -->
+	</logger>
+	<logger name="analytics" level="INFO" additivity="false" >
+		<appender-ref ref="analytics" />
+	</logger>
+	<root level="info">
+		<appender-ref ref="STDOUT" /> 
+		<appender-ref ref="file" />
+	</root> 
+	
+</configuration>
