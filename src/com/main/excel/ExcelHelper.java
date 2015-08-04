@@ -47,10 +47,17 @@ public class ExcelHelper {
 	 * @throws Exception 
 	 */
 	public void downloadTemplate(String isXSSF,OutputStream output,String name) throws Exception{
-		if("2003".equals(isXSSF)){
-			new HSSFExcelHandler().createExcelTemplate(output,EXCEL_HEADER,name);
-		}else{
-			new XSSFExcelHandler().createExcelTemplate(output,EXCEL_HEADER,name);
+		try{
+			if("2003".equals(isXSSF)){
+				new HSSFExcelHandler().createExcelTemplate(output,EXCEL_HEADER,name);
+			}else{
+				new XSSFExcelHandler().createExcelTemplate(output,EXCEL_HEADER,name);
+			}
+		}finally{
+			if(output != null){
+				output.close();
+				output = null;
+			}
 		}
 	}
 	
