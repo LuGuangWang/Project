@@ -10,7 +10,15 @@ public class Test{
   
   
   
+  public static int testCompareTime(){
+    String time1 = null;
+    String time2 = "2015-07-09 11:00:00.00";
+    return time2.compareTo(time1);
+  }
+  
   public static void main(String[] args) throws Exception{
+    System.out.println(testCompareTime());
+    
 //    System.out.println("this is my fisrt github source code.");
 //    MyInterface in = new Interface2();
 //    in.test();
