@@ -15,7 +15,8 @@ public class NewDateClassUtil {
   public static void testFormatDate() throws ParseException{
     String datetime = "2015-08-11";
     LocalDate localDate = LocalDate.parse(datetime);
-    localDate = localDate.minusDays(1L);
+    LocalDate localDate2 = localDate.minusDays(1L);
+    System.out.println(localDate2.isAfter(localDate));
     System.out.println(localDate.getDayOfWeek().getValue());
   }
   
