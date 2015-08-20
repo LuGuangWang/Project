@@ -17,7 +17,12 @@ public class SortBean implements Comparable<SortBean> {
 
 	@Override
 	public int compareTo(SortBean o) {
-		return uniqueId.compareTo(o.getUniqueId());
+	  if(uniqueId ==null){
+	    return 1;
+	  }else if(o.getUniqueId()==null)
+	    return -1;
+	  
+		return o.getUniqueId().compareTo(uniqueId);
 	}
 
 	public String toString(){

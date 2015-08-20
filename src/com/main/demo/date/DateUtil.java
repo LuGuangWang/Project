@@ -3,9 +3,12 @@
  */
 package com.main.demo.date;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import com.google.common.base.Strings;
 
 /**
  * 时间的一些使用
@@ -65,8 +68,32 @@ public class DateUtil {
     public static Date curDate() {
     	return roundToSeconds(new Date());
     }
+    /**
+     * 解析一段时间内的日期和星期
+     */
+    public static void parseDays(String dateFrom,String dateTo) throws ParseException{
+      if(Strings.isNullOrEmpty(dateFrom) || Strings.isNullOrEmpty(dateTo) || dateFrom.compareTo(dateTo)>0)
+        throw new RuntimeException("传入参数不符合要求");
+      
+      SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      Calendar calFrom = Calendar.getInstance();
+      Calendar calTo = Calendar.getInstance();
+      
+      calFrom.setTime(df.parse(dateFrom));
+      calTo.setTime(df.parse(dateTo));
+      do{
+        System.out.println("weekDay:"+calFrom.getTime());
+        System.out.println("weekDay:"+calFrom.get(Calendar.DAY_OF_WEEK));
+        
+        calFrom.add(Calendar.DAY_OF_MONTH, 1);
+      }while(!calFrom.after(calTo));
+    }
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws ParseException{
+      parseDays("2015-08-16","2015-08-20");
+      
+      
+      
     	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     	Date date = DateUtil.getCurrentDay(new Date());
     	System.out.println(df.format(date));

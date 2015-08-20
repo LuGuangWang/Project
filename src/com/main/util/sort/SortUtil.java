@@ -9,7 +9,7 @@ public class SortUtil {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SortBean s1 = new SortBean("1");
-		SortBean s2 = new SortBean("2");
+		SortBean s2 = new SortBean(null);
 		SortBean s3 = new SortBean("4");
 		SortBean s4 = new SortBean("3");
 		List<SortBean> arrs = new ArrayList<SortBean>();

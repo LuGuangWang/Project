@@ -16,6 +16,13 @@ public class Test{
     return time2.compareTo(time1);
   }
   
+  public static void parseDays(String dates) throws ParseException{
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(df.parse("2015-08-20"));
+    System.out.println(df.format(cal.getTime()));
+  }
+  
   public static void testSplit(){
     String a = "A__C_D_";
     String[] strs = a.split("_");
@@ -64,13 +71,6 @@ public class Test{
 //    length = time.length();
 //    System.out.println(time + " " + length);
 	  
-	  
-//	  SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//	  Calendar cal = Calendar.getInstance();
-//	  cal.setTime(df.parse(df.format(new Date())));
-//	  cal.add(Calendar.DATE, -60);
-//	  System.out.println(df.format(cal.getTime()));
-//	  
 //	  int year = Calendar.getInstance().get(Calendar.YEAR);
 //	  System.out.println(year);
 	  
