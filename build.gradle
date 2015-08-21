@@ -24,6 +24,7 @@ dependencies {
     compile "org.apache.poi:poi:3.12"
     compile "org.apache.poi:poi-ooxml:3.12"
     compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf"
     compile 'com.belerweb:pinyin4j:2.5.0'
     compile 'com.google.guava:guava:18.0'
     testCompile 'com.google.truth:truth:0.27'
