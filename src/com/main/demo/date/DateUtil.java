@@ -91,10 +91,8 @@ public class DateUtil {
     
     public static void main(String[] args) throws ParseException{
       parseDays("2015-08-16","2015-08-20");
-      
-      
-      
-    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+      SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     	Date date = DateUtil.getCurrentDay(new Date());
     	System.out.println(df.format(date));
     	
