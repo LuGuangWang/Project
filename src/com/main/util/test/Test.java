@@ -34,6 +34,14 @@ public class Test{
     return !str.matches("[^0-9]{1,}");
   }
   
+  //判断是否全是数字
+  public static boolean isDigit(String str){
+    if(Strings.isNullOrEmpty(str))
+      return false;
+    return str.matches("^[0-9]{1,}");
+  }
+  
+  
   public static void testSplit(){
     String a = "A__C_D_";
     String[] strs = a.split("_");
@@ -78,6 +86,8 @@ public class Test{
   
   public static void main(String[] args) throws Exception{
     testContain();
+    
+    System.out.println("是否都是数字："+isDigit("1232131")+" 是否含有数字："+containDigit("1232131哈"));
     
     String str = "尖1子1尖1子2目标";
     System.out.println(str.contains("尖子"));
