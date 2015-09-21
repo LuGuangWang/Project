@@ -3,6 +3,7 @@ package com.main.demo.reflect;
 public class DataBean {
   private String code;
   private String name;
+  public String testField;
   public String getCode() {
     return code;
   }
