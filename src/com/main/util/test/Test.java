@@ -41,6 +41,11 @@ public class Test{
     return str.matches("^[0-9]{1,}");
   }
   
+  //替换全部的.000
+  public static void replaceStr(String str){
+    str = str.replaceFirst("\\.0+$", "");
+    System.out.println(str);
+  }
   
   public static void testSplit(){
     String a = "A__C_D_";
@@ -85,6 +90,9 @@ public class Test{
   
   
   public static void main(String[] args) throws Exception{
+    replaceStr("1.000000");
+    
+    
     testContain();
     
     System.out.println("是否都是数字："+isDigit("1232131")+" 是否含有数字："+containDigit("1232131哈"));
