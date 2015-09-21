@@ -28,6 +28,47 @@ public class ExcelHelper {
 		}
 	}
 	/**
+	 * 解析cell类型
+	 */
+	public String getCellStringValue(Row row, int colIndex) {
+    if (row == null) {
+      return null;
+    }
+    Cell cell = row.getCell(colIndex);
+    if (cell == null) {
+      return null;
+    }
+
+    String result = null;
+    try {
+      switch (cell.getCellType()) {
+        case Cell.CELL_TYPE_NUMERIC:// 数字类型
+          if (DateUtil.isCellDateFormatted(cell)) {// 时间
+//            Date date = cell.getDateCellValue();
+//            result = Util.formatDateTime(date);
+          } else {
+            return String.valueOf(cell.getNumericCellValue()).replaceFirst("\\.0+", "");
+          }
+          break;
+        case Cell.CELL_TYPE_STRING:// String类型
+          result = cell.getStringCellValue();
+          break;
+        case Cell.CELL_TYPE_BLANK:
+          result = "";
+        default:
+          result = "";
+          break;
+      }
+    } catch (Exception e) {
+      throw new RuntimeException("读取Excel错误, ", e);
+    }
+    if (result != null) {
+      result = result.trim();
+    }
+    return result;
+  }
+	
+	/**
 	 * 获取处理excel的handler
 	 * @param workbook
 	 * @return
