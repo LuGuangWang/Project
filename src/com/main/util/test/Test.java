@@ -90,9 +90,11 @@ public class Test{
   
   
   public static void main(String[] args) throws Exception{
+    System.out.println(String.valueOf(System.currentTimeMillis()-1443148421988L));
+    
+    
     replaceStr("1.000000");
-    
-    
+
     testContain();
     
     System.out.println("是否都是数字："+isDigit("1232131")+" 是否含有数字："+containDigit("1232131哈"));
