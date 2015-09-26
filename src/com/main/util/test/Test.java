@@ -48,7 +48,7 @@ public class Test{
   }
   
   public static void testSplit(){
-    String a = "A__C_D_";
+    String a = "A_C_D_";
     String[] strs = a.split("_");
     for(String str :strs)
       System.out.println(str+" size:"+strs.length);
@@ -88,8 +88,16 @@ public class Test{
   }
   
   
+  private static void testListSize(){
+    List<String> strs = new ArrayList<String>(4);
+    strs.add("1");
+    System.out.println("array size:"+strs.size());
+  }
+  
   
   public static void main(String[] args) throws Exception{
+    testListSize();
+    
     System.out.println(String.valueOf(System.currentTimeMillis()-1443148421988L));
     
     
