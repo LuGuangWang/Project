@@ -47,6 +47,12 @@ public class Test{
     System.out.println(str);
   }
   
+  public static void replaceHanziStr(String str){
+    str = str.replaceFirst("^[^0-9]{1,}", "");
+    System.out.println(str);
+  }
+  
+  
   public static void testSplit(){
     String a = "A_C_D_";
     String[] strs = a.split("_");
@@ -96,6 +102,14 @@ public class Test{
   
   
   public static void main(String[] args) throws Exception{
+    String str2 = "";
+    System.out.println(str2+",2");
+    
+    
+    
+    replaceHanziStr("每周六日8：00-10:00,13:00-15:00；周一10:30-12:00，13:00-15:00");
+    
+    
     testListSize();
     
     System.out.println(String.valueOf(System.currentTimeMillis()-1443148421988L));
