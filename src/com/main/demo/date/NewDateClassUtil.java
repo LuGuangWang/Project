@@ -20,9 +20,27 @@ public class NewDateClassUtil {
     System.out.println(localDate.getDayOfWeek().getValue());
   }
   
+  /**
+   * 格式化日期
+   */
+  public static void testFormat(){
+    System.out.println("testFormat()---------");
+    String datetime = "2015-08-01";
+    System.out.println(datetime.length());
+    if(datetime.matches("\\d{4}-\\d{1}-\\d{1}")){
+      datetime = datetime.replaceAll("-", "-0");
+    }else if(datetime.matches("\\d{4}-\\d{1}-\\d{2}")){
+      datetime = datetime.replaceFirst("-", "-0");
+    }else if(datetime.matches("\\d{4}-\\d{2}-\\d{1}")){
+      datetime = datetime.substring(0, datetime.length()-1) + "0" + datetime.charAt(datetime.length()-1);
+    }
+    System.out.println(datetime);
+  }
+  
   public static void main(String[] args) throws ParseException {
     testNewDate();
     testFormatDate();
+    testFormat();
   }
 
 }
