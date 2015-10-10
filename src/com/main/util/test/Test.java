@@ -83,14 +83,18 @@ public class Test{
    */
   public static void testContain(){
     List<Integer> ins = new ArrayList<>();
-    Integer a = 2;
+    Integer a = 1;
     ins.add(1);
-    System.out.println(ins.contains(a));
+    System.out.println("testContain:"+ins.contains(a));
     
+    List<String> strs = new ArrayList<>();
+    String ass = "1";
+    strs.add("1");
+    System.out.println("testContain:"+strs.contains(ass));
     
     Integer[] as = {1,2};
     List<Integer> asl = Arrays.asList(as);
-    System.out.println(asl.contains("2"));
+    System.out.println("testContain:"+asl.contains("2"));
   }
   
   
