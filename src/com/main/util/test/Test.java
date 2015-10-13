@@ -104,15 +104,20 @@ public class Test{
     System.out.println("array size:"+strs.size());
   }
   
+  public static void testIntParam(int i){
+    System.out.println("testIntParam():"+i);
+  }
+  
   
   public static void main(String[] args) throws Exception{
+    int i=2;
+    testIntParam(i++);
+    System.out.println("----:"+i);
+      
     String str2 = "";
     System.out.println(str2+",2");
     
-    
-    
     replaceHanziStr("每周六日8：00-10:00,13:00-15:00；周一10:30-12:00，13:00-15:00");
-    
     
     testListSize();
     
