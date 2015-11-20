@@ -9,6 +9,12 @@ public class ObjectFields implements Comparator<ObjectFields> {
   private String name;
   private String sex;
   private String age;
+  public ObjectFields(){
+    
+  }
+  public ObjectFields(String name){
+    this.name=name;
+  }
   
   public String getName() {
     return name;

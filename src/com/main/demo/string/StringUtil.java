@@ -25,9 +25,16 @@ public class StringUtil {
     }
   }
   
+  //去string中的.000
+  static void replaceSpot(){
+    String str = "8.000";
+    System.out.println("小数："+str.replaceAll("\\.0*$", ""));
+  }
+  
   public static void main(String[] args) {
     replaceChinese();
     splitStr();
+    replaceSpot();
   }
 
 }

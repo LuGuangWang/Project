@@ -7,7 +7,7 @@ public class CompareMultipleFields {
     o.setAge("");
     o.setName("name1");
     o.setSex("sex");
-    System.out.println(o.comparate(new ObjectFields()));
+    System.out.println(o.comparate(new ObjectFields("name")));
   }
 
 }
