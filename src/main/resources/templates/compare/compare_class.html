@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>教务-报名系统班级比对</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link th:href="@{/css/tab.css}" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" th:src="@{/js/test.js}"></script>
+<script type="text/javascript">
+	function showMsg(){
+		alert("OK");
+	}
+</script>
+</head>
+<body>
+	<div id="mainContainer">
+		<div id="navContainer" class="navC mb10">
+			<ul>
+				<li class="current"><a href="compare_class.html" th:href="@{/compare/class}" hidefocus="true">班级信息</a></li>
+				<li><a href="#"  hidefocus="true">课表信息</a></li>
+				<li><a href="#" hidefocus="true">周历信息</a></li>
+			</ul>
+		</div>
+		<button type="submit" name="save" onclick="showMsg()">submit</button>
+		<button type="submit" name="save" onclick="testShowMsg()">src submit</button>
+		<div class="mb20">
+			<table class="tdtable">
+				<tbody>
+					<tr>
+						<th><strong>留言薄</strong>编号</th>
+						<th>手机号码</th>
+						<th>留言时间</th>
+						<th>留言</th>
+						<th>操作</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>13638688356</td>
+						<td></td>
+						<td>意见内容意见内容意见内容</td>
+						<td><a href="message-board!delete.action?id=1&amp;msgType="
+							class="del">删除</a></td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>13638688356</td>
+						<td></td>
+						<td>意见内容意见内容意见内容</td>
+						<td><a href="message-board!delete.action?id=2&amp;msgType="
+							class="del">删除</a></td>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td>13638688356</td>
+						<td></td>
+						<td>我爱你，就象老鼠爱大米11</td>
+						<td><a href="message-board!delete.action?id=8&amp;msgType="
+							class="del">删除</a></td>
+					</tr>
+					<tr>
+						<td bgcolor="#fafafa" align="right" colspan="6">
+							<div id="footer">
+								第1页, 共1页 <a href="javascript:jumpPage(1)">首页</a> <a
+									href="javascript:jumpPage(1)">末页</a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+</body>
+</html>

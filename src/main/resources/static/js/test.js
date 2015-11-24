@@ -1,0 +1,3 @@
+function testShowMsg(){
+		alert("OK");
+	}
