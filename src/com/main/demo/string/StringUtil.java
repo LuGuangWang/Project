@@ -31,7 +31,15 @@ public class StringUtil {
     System.out.println("小数："+str.replaceAll("\\.0*$", ""));
   }
   
+  //比较字符查差值
+  static void compareValue(){
+    String day1 = "2015-01-09";
+    String day2 = "2015-01-09 00:00:00";
+    System.out.println("差值："+day2.compareTo(day1));
+  }
+  
   public static void main(String[] args) {
+    compareValue();
     replaceChinese();
     splitStr();
     replaceSpot();
