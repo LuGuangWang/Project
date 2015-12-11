@@ -1,9 +1,13 @@
 package com.main.util.clone;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CloneBean implements Cloneable {
 	private String userId;
 	private String userName;
 	private String testMesg;
+	private List<Bean> isClone;
 	public String getTestMesg() {
 		return testMesg;
 	}
@@ -22,17 +26,28 @@ public class CloneBean implements Cloneable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	//重写clone方法
+	public List<Bean> getIsClone() {
+    return isClone;
+  }
+  public void setIsClone(List<Bean> isClone) {
+    this.isClone = isClone;
+  }
+  //重写clone方法
 	public Object clone(){
-		Object o = null;
+	  CloneBean o = null;
 		try {
-			o = super.clone();
+		  o = (CloneBean)super.clone();
+		  List<Bean> beans = new ArrayList<Bean>();
+		  for(Bean s:o.getIsClone()){
+		    beans.add((Bean) s.clone());
+		  }
+		  o.setIsClone(beans);
 		}catch (CloneNotSupportedException e){
 			e.printStackTrace();
 		}
 		return o;
 	}
 	public String toString(){
-		return "this object is:" + userId + "," + userName + "," + testMesg;
+		return "this object is:  " + userId + " , " + userName + " , " + testMesg +" , "+ isClone;
 	}
 }
