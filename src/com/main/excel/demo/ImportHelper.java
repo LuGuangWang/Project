@@ -45,8 +45,10 @@ public class ImportHelper {
   }
   //set formula evaluator
   private void setFormulaEvaluator(Workbook workbook){
-    if(formulaEvaluator==null)
+    if(formulaEvaluator==null){
       formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+      workbook.setForceFormulaRecalculation(true);
+    }
   }
 
   /**
