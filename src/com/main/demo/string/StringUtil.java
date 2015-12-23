@@ -31,6 +31,12 @@ public class StringUtil {
     System.out.println("小数："+str.replaceAll("\\.0*$", ""));
   }
   
+  static void replaceKuohao(){
+    String str = "你好（d)";
+    str = str.replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\（", "_").replaceAll("\\）", "_");
+    System.out.println("----"+str);
+  }
+  
   //比较字符查差值
   static void compareValue(){
     String day1 = "2015-01-09";
@@ -39,6 +45,7 @@ public class StringUtil {
   }
   
   public static void main(String[] args) {
+    replaceKuohao();
     compareValue();
     replaceChinese();
     splitStr();
