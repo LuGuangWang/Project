@@ -39,17 +39,26 @@ public class StringUtil {
   
   //比较字符查差值
   static void compareValue(){
-    String day1 = "2015-01-09";
-    String day2 = "2015-01-09 00:00:00";
+    String day1 = "2015-10-11";
+    String day2 = "2015-11-1";
     System.out.println("差值："+day2.compareTo(day1));
   }
   
+  static void matchDate(){
+    String d = "2016-3-1至2016-5-28周一至周六上课周一至周六上课";
+    String week = d.replaceFirst("^\\d+-\\d+-\\d+至\\d+-\\d+-\\d+","");
+    String date = d.substring(0, d.length()-week.length());
+    System.out.println("week:"+week);
+    System.out.println("date:"+date);
+  }
+  
   public static void main(String[] args) {
-    replaceKuohao();
-    compareValue();
-    replaceChinese();
-    splitStr();
-    replaceSpot();
+//    replaceKuohao();
+//    compareValue();
+//    replaceChinese();
+//    splitStr();
+//    replaceSpot();
+    matchDate();
   }
 
 }
