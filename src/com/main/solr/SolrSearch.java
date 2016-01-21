@@ -3,7 +3,6 @@ package com.main.solr;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrInputDocument;
@@ -19,15 +18,17 @@ public class SolrSearch {
   
   static void testSearchQ(){
     SolrQuery query = new SolrQuery();
-    query.setQuery("name:\"新东方总部大厦504教室(旧)\"");
-//    query.setFilterQueries("name:\"高峰\"");
-    query.add("wt", "json");
-    query.setFields("name","address_s");
+    String localParams = "{!q.op=AND wt=json}";
+    String field1 = "name:\"大厦\"";
+    String field2 = " area_name:临时教室校区";
+    String q = localParams + field1+field2;
+    query.setQuery(q);
     try {
       QueryResponse resp = server.query(query);
       List<ResultBean> results = resp.getBeans(ResultBean.class);
       log.info("result:{}",results);
-    } catch (SolrServerException e) {
+    } catch (Exception e) {
+      log.info("exception:",e);
     }
   }
   

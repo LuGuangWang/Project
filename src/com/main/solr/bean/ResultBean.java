@@ -13,14 +13,34 @@ public class ResultBean {
   @Field
   private String name;
   @Field
-  private String address_s;
-  
-  public String getAddress_s() {
-    return address_s;
+  private String area_name;
+  @Field
+  private String school_name;
+  @Field
+  private String business_name;
+
+  public String getArea_name() {
+    return area_name;
   }
 
-  public void setAddress_s(String address_s) {
-    this.address_s = address_s;
+  public void setArea_name(String area_name) {
+    this.area_name = area_name;
+  }
+
+  public String getSchool_name() {
+    return school_name;
+  }
+
+  public void setSchool_name(String school_name) {
+    this.school_name = school_name;
+  }
+
+  public String getBusiness_name() {
+    return business_name;
+  }
+
+  public void setBusiness_name(String business_name) {
+    this.business_name = business_name;
   }
 
   public String getName() {
