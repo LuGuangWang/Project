@@ -14,13 +14,13 @@ import com.main.solr.bean.ResultBean;
 
 public class SolrSearch {
   static Logger log = LoggerFactory.getLogger(SolrSearch.class);
-  private static final String solrServer = "http://10.202.80.88:8080/solr/mdm/";
+  private static final String solrServer = "http://10.202.80.88:8080/solr/jw/";
   private static HttpSolrServer server = new HttpSolrServer(solrServer);
   
   static void testSearchQ(){
     SolrQuery query = new SolrQuery();
-    query.setQuery("name:孟高峰");
-    query.setFilterQueries("name:\"高峰\"");
+    query.setQuery("name:\"新东方总部大厦504教室(旧)\"");
+//    query.setFilterQueries("name:\"高峰\"");
     query.add("wt", "json");
     query.setFields("name","address_s");
     try {
@@ -39,7 +39,7 @@ public class SolrSearch {
     doc.addField("id", "19891229");
     try{
       server.add(doc);
-      server.optimize(true,false);
+      server.optimize(true,true);
       server.commit();
     }catch(Exception e){
       log.info("exception:",e);
@@ -48,7 +48,7 @@ public class SolrSearch {
   
   
   public static void main(String[] args){
-    testMergeIndex();
+//    testMergeIndex();
     testSearchQ();
   }
 }
