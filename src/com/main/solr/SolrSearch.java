@@ -20,8 +20,12 @@ public class SolrSearch {
     SolrQuery query = new SolrQuery();
     String localParams = "{!q.op=AND wt=json}";
     String field1 = "name:\"大厦\"";
-    String field2 = " area_name:临时教室校区";
-    String q = localParams + field1+field2;
+//    String field2 = " area_name:\"*\" NOT \"临时教室校区\"";//不包含
+//    String field2 = " -area_name:临时教室校区";//不包含
+    
+    
+    String field2 = " (area_name:临时 OR area_name:新东方总部)";//不包含
+    String q = localParams + field1 +field2;
     query.setQuery(q);
     try {
       QueryResponse resp = server.query(query);
