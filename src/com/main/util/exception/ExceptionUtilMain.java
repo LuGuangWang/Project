@@ -64,21 +64,36 @@ public class ExceptionUtilMain {
 			}
 		}
 	}
+	
+	static void testRuntimeException(){
+	  try{
+	    throw new RuntimeException("this is a run time exception.");
+	  }catch(Exception e){
+	    System.out.println("this is a exception." + e.getMessage());
+	  }finally{
+	    System.out.println("this is finally.");
+	  }
+	}
+	/**
+	 * 解压文件
+	 */
+  static void testUnzip(){
+    ExceptionUtilMain exMain = new ExceptionUtilMain();
+    exMain.writeList();
     
-    
-    
+    try {
+      writeToFileZipFileContents("test.zip","test.txt");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ExceptionUtilMain exMain = new ExceptionUtilMain();
-		exMain.writeList();
-		
-		try {
-			writeToFileZipFileContents("test.zip","test.txt");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	  testRuntimeException();
+//	  testUnzip();
 	}
 
 }
