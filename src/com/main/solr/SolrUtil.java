@@ -21,14 +21,14 @@ public class SolrUtil {
   
   static void testSearchQ(){
     SolrQuery query = new SolrQuery();
-    String localParams = "{!q.op=AND wt=json}";
-    String field1 = "name:\"大厦\"";
+//    String localParams = "{!q.op=AND wt=json}";
+//    String field1 = "name:教室";
 //    String field2 = " area_name:\"*\" NOT \"临时教室校区\"";//不包含
-//    String field2 = " -area_name:临时教室校区";//不包含
-    
-    
-    String field2 = " (area_name:临时 OR area_name:新东方总部)";
-    String q = localParams + field1 +field2;
+//    String field3 = " -area_name:临时教室校区";//不包含
+//    String field4 = " (area_name:临时 OR area_name:新东方总部)";
+    String field5 = "name:教室  AND (code:RMBJ03001,RMBJ01009)";//多查询
+//    String q =  localParams + field1 +field4;
+    String q =  field5;
     query.setQuery(q);
     try {
       QueryResponse resp = server.query(query);
@@ -96,9 +96,9 @@ public class SolrUtil {
   
   public static void main(String[] args){
 //    testMergeIndex();
-//    testSearchQ();
+    testSearchQ();
 //    testDeltaImport();
 //    testFullImport();
-    testDelete();
+//    testDelete();
   }
 }
