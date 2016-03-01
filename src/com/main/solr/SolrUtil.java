@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import com.main.http.HttpUtil;
 import com.main.solr.bean.ResultBean;
 
-public class SolrSearch {
-  static Logger log = LoggerFactory.getLogger(SolrSearch.class);
+public class SolrUtil {
+  static Logger log = LoggerFactory.getLogger(SolrUtil.class);
   private static final String solrServer = "http://10.202.80.88:8080/solr/jw/";
   private static HttpSolrServer server = new HttpSolrServer(solrServer);
   
@@ -65,6 +65,7 @@ public class SolrSearch {
     param.put("command", "delta-import");
     param.put("clean", "false");
     param.put("commit", "true");
+    param.put("entity", "bs_room");
     String reslut = HttpUtil.doPost(url, param);
     log.info("----"+reslut);
   }
@@ -80,13 +81,24 @@ public class SolrSearch {
     param.put("command", "full-import");
     param.put("clean", "true");
     param.put("commit", "true");
-    String reslut = HttpUtil.doPost(url, param);
-    log.info("----"+reslut);
+    param.put("entity", "bs_room");
+    HttpUtil.doPost(url, param);
   }
+  
+  static void testDelete(){
+    try{
+      server.deleteById("19891230");
+      server.commit();
+    }catch(Exception e){
+      log.error("exception:",e);
+    }
+  }
+  
   public static void main(String[] args){
 //    testMergeIndex();
 //    testSearchQ();
 //    testDeltaImport();
-    testFullImport();
+//    testFullImport();
+    testDelete();
   }
 }
