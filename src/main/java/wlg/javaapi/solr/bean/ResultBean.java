@@ -2,7 +2,7 @@ package wlg.javaapi.solr.bean;
 
 import org.apache.solr.client.solrj.beans.Field;
 
-import wlg.apiutil.jsonutil.Util;
+import wlg.apiutil.jsonutil.JSONUtil;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -52,6 +52,6 @@ public class ResultBean {
   }
   
   public String toString(){
-    return Util.toJson(this);
+    return JSONUtil.toJson(this);
   }
 }
