@@ -12,11 +12,13 @@ import net.sourceforge.pinyin4j.PinyinHelper;
 
 import org.junit.Test;
 
-import test.AbstractBaseTest;
+import wlg.javaapi.demo.pinyin.JuziPinyin;
+import wlg.javaapi.demo.pinyin.PinyinUtil;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.truth.Truth;
+import com.main.AbstractBaseTest;
 
 public class PinyinUtilTest extends AbstractBaseTest{
   @Test

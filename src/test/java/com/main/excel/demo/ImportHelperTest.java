@@ -6,7 +6,10 @@ import java.util.List;
 
 import org.junit.Test;
 
-import test.AbstractBaseTest;
+import wlg.javaapi.excel.demo.ImportHelper;
+import wlg.javaapi.excel.demo.LTeacherList;
+
+import com.main.AbstractBaseTest;
 
 public class ImportHelperTest extends AbstractBaseTest{
 
