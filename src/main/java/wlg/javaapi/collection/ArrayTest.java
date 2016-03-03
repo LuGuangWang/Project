@@ -7,10 +7,11 @@ public class ArrayTest {
 
   static void testContains(){
     List<String> arr = Arrays.asList("hello","world");
-    arr.contains("h");
+    System.out.println(arr.contains("hello"));
   }
   
   public static void main(String[] args) {
-
+    testContains();
   }
+  
 }
