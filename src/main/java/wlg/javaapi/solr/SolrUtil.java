@@ -32,6 +32,7 @@ public class SolrUtil {
     query.setQuery(q);
     try {
       QueryResponse resp = server.query(query);
+      log.info("ResponseHeader:{}",resp.getResponseHeader());
       List<ResultBean> results = resp.getBeans(ResultBean.class);
       log.info("result:{}",results);
     } catch (Exception e) {

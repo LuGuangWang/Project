@@ -1,13 +1,39 @@
 package wlg.javaapi.solr.demo;
 
+import java.util.List;
+
+import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.response.QueryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import wlg.javaapi.solr.SolrUtil;
+import wlg.javaapi.solr.demo.translator.SolrTranslator;
 
-public class SolrHelper {
-  static Logger log = LoggerFactory.getLogger(SolrUtil.class);
+abstract public class SolrHelper {
+  private Logger log = LoggerFactory.getLogger(getClass());
+  
   private static final String solrServer = "http://10.202.80.88:8080/solr/jw/";
-  private static HttpSolrServer server = new HttpSolrServer(solrServer);
+  @Autowired
+  SolrTranslator t;
+  
+  abstract protected List<String> buildSepcialFields();
+  
+  public <T,E> List<E> solrQuery(T searchIn,Class<E> type,Integer no,Integer size){
+    List<E> result = null;
+    try {
+      HttpSolrServer server = new HttpSolrServer(solrServer);
+      SolrQuery query = new SolrQuery();
+      query.setStart((no - 1) * size);
+      query.setRows(size);
+      query.setQuery(t.buildSQLCondition(searchIn,this.buildSepcialFields()));
+      QueryResponse resp = server.query(query);
+      result = resp.getBeans(type);
+      log.debug("total count:"+resp.getResults().getNumFound());
+    }catch (Exception e) {
+      log.error("solr query error:",e);
+    }
+    return result;
+  }
 }
