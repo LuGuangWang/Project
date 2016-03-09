@@ -8,6 +8,11 @@ public class NewTest {
     System.out.print("x:"+x + " y:"+y);
   }
   
+  static void testInstanceof(){
+    boolean flag = null instanceof String;
+    System.out.println(flag);
+  }
+  
   //测试return
   static void testReturn(){
     return;
@@ -15,7 +20,7 @@ public class NewTest {
   }
   
   public static void main(String[] args){
-    testOperator();
-    
+//    testOperator();
+    testInstanceof();
   }
 }

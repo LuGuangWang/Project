@@ -66,7 +66,7 @@ public class SolrUtil {
     param.put("command", "delta-import");
     param.put("clean", "false");
     param.put("commit", "true");
-    param.put("entity", "bs_room");
+    param.put("entity", "bs_class");
     String reslut = HttpUtil.doPost(url, param);
     log.info("----"+reslut);
   }
@@ -97,8 +97,8 @@ public class SolrUtil {
   
   public static void main(String[] args){
 //    testMergeIndex();
-    testSearchQ();
-//    testDeltaImport();
+//    testSearchQ();
+    testDeltaImport();
 //    testFullImport();
 //    testDelete();
   }
