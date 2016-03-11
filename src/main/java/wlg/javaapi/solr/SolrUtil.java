@@ -1,5 +1,6 @@
 package wlg.javaapi.solr;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,16 +44,26 @@ public class SolrUtil {
    * 添加
    */
   static void testMergeIndex(){
+   
+    long start = System.currentTimeMillis();
     SolrInputDocument doc = new SolrInputDocument();
     doc.addField("name", "LGTEST2");
-    doc.addField("id", "19891230");
+    doc.addField("id", "19891232");
+    SolrInputDocument doc1 = new SolrInputDocument();
+    doc1.addField("name", "LGTEST3");
+    doc1.addField("id", "19891231");
+    List<SolrInputDocument> docs = new ArrayList<SolrInputDocument>();
+    docs.add(doc);
+    docs.add(doc1);
     try{
-      server.add(doc);
-      server.optimize(false,false);
+      server.add(docs);
       server.commit();
     }catch(Exception e){
       log.info("exception:",e);
     }
+    
+    long end =  System.currentTimeMillis();
+    System.out.println("taken time:" + (end - start));
   }
   
   /**
@@ -96,9 +107,9 @@ public class SolrUtil {
   }
   
   public static void main(String[] args){
-//    testMergeIndex();
+    testMergeIndex();
 //    testSearchQ();
-    testDeltaImport();
+//    testDeltaImport();
 //    testFullImport();
 //    testDelete();
   }
