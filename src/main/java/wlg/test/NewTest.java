@@ -1,5 +1,7 @@
 package wlg.test;
 
+import java.io.UnsupportedEncodingException;
+
 public class NewTest {
   //测试操作符
   static void testOperator(){
@@ -19,8 +21,16 @@ public class NewTest {
 //    System.out.print("Hello");//return 语句后写东西是校验不过的
   }
   
+  static void testLength(){
+    String name = "优能E计划听力口语集训营（初三预科原酷学酷玩听口）";
+    try {
+      System.out.println("str length:" + name.getBytes("gbk").length);
+    } catch (UnsupportedEncodingException e) {
+    } 
+  }
+  
   public static void main(String[] args){
 //    testOperator();
-    testInstanceof();
+    testLength();
   }
 }
