@@ -26,7 +26,24 @@ public class MapUtil {
     System.out.println("String key: "+map.get("key"));
   }
   
+  static void testMapGeneric(){
+    Map<String,? super Object> propertys = new HashMap<>();
+    MapData data = new MapData();
+    data.setName("LG");
+    propertys.put("1", data);
+    propertys.put("2", "2");
+    for(Map.Entry<String, ?> entry:propertys.entrySet()){
+      Object obj = entry.getValue();
+      if(obj instanceof String){
+        System.out.println("String is " + obj);
+      }else if(obj instanceof MapData){
+        System.out.println("MapData is " + obj);
+      }
+    }
+  }
+  
 	public static void main(String[] args) {
+	  testMapGeneric();
 	  testMapObject();
 	  testMapString();
 		// TODO Auto-generated method stub
