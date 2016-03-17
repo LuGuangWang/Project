@@ -1,10 +1,22 @@
 package wlg.test;
 
 import java.io.UnsupportedEncodingException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class NewTest {
+  
+  public static void main(String[] args){
+    testOperator();
+    testLength();
+    testIntegerMethod();
+    testInstanceof();
+    testReturn();
+   
+  }
+  
+  void testSpring(){
+    
+  }
+  
   //测试操作符
   static void testOperator(){
     int x,y;
@@ -32,12 +44,8 @@ public class NewTest {
     } 
   }
   
-  public static void main(String[] args){
-//    testOperator();
-//    testLength();
+  private static void testIntegerMethod() {
     int number = 2;
-    Map<String,String[]> args1 = new LinkedHashMap<>();
-    args1.put("1", null);
     System.out.println(Integer.toBinaryString(number));
     System.out.println(Integer.numberOfTrailingZeros(number));
     System.out.println(Integer.numberOfLeadingZeros(number));

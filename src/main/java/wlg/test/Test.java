@@ -13,8 +13,6 @@ import com.google.common.base.Strings;
 public class Test{
   Test(){}
   
-  
-  
   public static int testCompareTime(){
     String time1 = "2015-07-01 11:00:00";
     String time2 = "2015-07-09 11:00:00";
