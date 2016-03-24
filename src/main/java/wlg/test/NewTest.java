@@ -10,11 +10,11 @@ public class NewTest {
     testIntegerMethod();
     testInstanceof();
     testReturn();
-   
+    testSpring();
   }
   
-  void testSpring(){
-    
+  static void testSpring(){
+    System.out.println(Test.class.getPackage().getImplementationVersion());
   }
   
   //测试操作符

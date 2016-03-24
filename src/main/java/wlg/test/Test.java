@@ -106,6 +106,9 @@ public class Test{
     System.out.println("testIntParam():"+i);
   }
   
+  public void setMock(String arg){
+    arg.toString();
+  }
   
   public static void main(String[] args) throws Exception{
     int i=2;

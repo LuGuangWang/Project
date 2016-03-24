@@ -15,6 +15,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http.antMatcher("/**")
         .authorizeRequests()
         .anyRequest()
+//        .antMatchers("/**").hasRole("USER");//指定用户访问地址
         .authenticated()
         .and()
         .formLogin()
