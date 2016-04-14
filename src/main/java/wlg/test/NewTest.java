@@ -1,6 +1,7 @@
 package wlg.test;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.invoke.MethodHandles;
 
 public class NewTest {
   
@@ -14,7 +15,8 @@ public class NewTest {
   }
   
   static void testSpring(){
-    System.out.println(Test.class.getPackage().getImplementationVersion());
+    String str = MethodHandles.lookup().lookupClass().getName();
+    System.out.println(str);
   }
   
   //测试操作符
@@ -45,11 +47,11 @@ public class NewTest {
   }
   
   private static void testIntegerMethod() {
-    int number = 2;
+    int number = 1;
     System.out.println(Integer.toBinaryString(number));
     System.out.println(Integer.numberOfTrailingZeros(number));
     System.out.println(Integer.numberOfLeadingZeros(number));
-    System.out.println(number >> 3);
+    System.out.println(">>>>>>>>>" + (number >> 1));
     System.out.println(number >>> 2);
     System.out.println(~number);
     System.out.println(~number);
