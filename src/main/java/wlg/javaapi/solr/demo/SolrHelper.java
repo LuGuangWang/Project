@@ -1,9 +1,11 @@
 package wlg.javaapi.solr.demo;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +24,9 @@ abstract public class SolrHelper {
   
   public <T,E> List<E> solrQuery(T searchIn,Class<E> type,Integer no,Integer size){
     List<E> result = null;
+    SolrClient server = null;
     try {
-      HttpSolrServer server = new HttpSolrServer(solrServer);
+      server = new HttpSolrClient(solrServer);
       SolrQuery query = new SolrQuery();
       query.setStart((no - 1) * size);
       query.setRows(size);
@@ -33,6 +36,12 @@ abstract public class SolrHelper {
       log.debug("total count:"+resp.getResults().getNumFound());
     }catch (Exception e) {
       log.error("solr query error:",e);
+    }finally{
+      if(server!=null)
+        try {
+          server.close();
+        } catch (IOException e) {
+        }
     }
     return result;
   }

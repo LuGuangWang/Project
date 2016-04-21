@@ -28,7 +28,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-security"
     compile 'com.belerweb:pinyin4j:2.5.0'
     compile 'com.google.guava:guava:18.0'
-    compile "org.apache.solr:solr-solrj:4.10.4"
+    compile "org.apache.solr:solr-solrj:6.0.0"
     compile 'mysql:mysql-connector-java:5.1.37'
     testCompile 'com.google.truth:truth:0.27'
     testCompile "org.springframework.boot:spring-boot-starter-test"

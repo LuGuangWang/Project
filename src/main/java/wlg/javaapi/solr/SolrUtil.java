@@ -1,14 +1,18 @@
 package wlg.javaapi.solr;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.client.solrj.request.ContentStreamUpdateRequest;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.common.util.NamedList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,18 +22,18 @@ import wlg.javaapi.solr.bean.ResultBean;
 public class SolrUtil {
   static Logger log = LoggerFactory.getLogger(SolrUtil.class);
   private static final String solrServer = "http://10.202.80.88:8080/solr/jw/";
-  private static HttpSolrServer server = new HttpSolrServer(solrServer);
+  private static SolrClient server = new HttpSolrClient(solrServer);
   
   static void testSearchQ(){
     SolrQuery query = new SolrQuery();
 //    String localParams = "{!q.op=AND wt=json}";
-//    String field1 = "name:教室";
+    String field1 = "name:教室";
 //    String field2 = " area_name:\"*\" NOT \"临时教室校区\"";//不包含
 //    String field3 = " -area_name:临时教室校区";//不包含
 //    String field4 = " (area_name:临时 OR area_name:新东方总部)";
-    String field5 = "name:教室  AND (code:RMBJ03001,RMBJ01009)";//多查询
+//    String field5 = "name:教室  AND (code:RMBJ03001,RMBJ01009)";//多查询
 //    String q =  localParams + field1 +field4;
-    String q =  field5;
+    String q =  field1;
     query.setQuery(q);
     try {
       QueryResponse resp = server.query(query);
@@ -106,9 +110,21 @@ public class SolrUtil {
     }
   }
   
+  static void addFile(){
+    try {
+      ContentStreamUpdateRequest req = new ContentStreamUpdateRequest("/update/extract");
+      req.addFile(new File("D:/1.pdf"),"application/pdf");
+      NamedList<Object> result = server.request(req);
+      System.out.println("Result: " + result);
+    } catch (Exception e) {
+      log.info("result:",e);
+    }
+  }
+  
   public static void main(String[] args){
-    testMergeIndex();
-//    testSearchQ();
+//    testMergeIndex();
+//    addFile();
+    testSearchQ();
 //    testDeltaImport();
 //    testFullImport();
 //    testDelete();
