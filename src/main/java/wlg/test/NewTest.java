@@ -1,22 +1,26 @@
 package wlg.test;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.invoke.MethodHandles;
 
 public class NewTest {
   
   public static void main(String[] args){
-    testOperator();
-    testLength();
-    testIntegerMethod();
-    testInstanceof();
-    testReturn();
+//    testOperator();
+//    testLength();
+//    testIntegerMethod();
+//    testInstanceof();
+//    testReturn();
     testSpring();
   }
   
   static void testSpring(){
-    String str = MethodHandles.lookup().lookupClass().getName();
-    System.out.println(str);
+    int size = 100;
+    int startSize = 100;
+    System.out.println(startSize + (startSize>>2));
+    while(startSize + (startSize>>2) > size){
+      size <<= 1;
+      System.out.println("testSpring:"+size);
+    }
   }
   
   //测试操作符
