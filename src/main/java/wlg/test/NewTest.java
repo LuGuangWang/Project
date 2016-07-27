@@ -10,7 +10,15 @@ public class NewTest {
 //    testIntegerMethod();
 //    testInstanceof();
 //    testReturn();
-    testSpring();
+//    testSpring();
+    
+    format();
+  }
+  
+  static void format(){
+    String str = "2016年1月1日";
+    String dateRegex = "\\d+[\\.|年|-]\\d+[\\.|月|-]\\d+日{0,1}";
+    System.out.println(str.matches(dateRegex));
   }
   
   static void testSpring(){
@@ -50,7 +58,7 @@ public class NewTest {
     } 
   }
   
-  private static void testIntegerMethod() {
+  static void testIntegerMethod() {
     int number = 1;
     System.out.println(Integer.toBinaryString(number));
     System.out.println(Integer.numberOfTrailingZeros(number));
