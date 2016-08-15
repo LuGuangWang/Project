@@ -11,8 +11,9 @@ public class NewTest {
 //    testInstanceof();
 //    testReturn();
 //    testSpring();
+//    format();
+    System.out.println("result:" + (4>>1));
     
-    format();
   }
   
   static void format(){

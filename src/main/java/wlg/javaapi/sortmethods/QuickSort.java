@@ -49,14 +49,19 @@ public class QuickSort {
         tmp = a[low];
         a[low] = a[high];
         a[high] = tmp;
+        high --;
       }
     }
     
+    for(int t:a){
+      System.out.print("===>"+t);
+    }
+    System.out.print("\n");
     return low;
   }
 
   public static void main(String[] args) {
-    int a[] = {3,1,5,7,2,4,9,6,10,8};  
+    int a[] = {3};  
     quickSort(a, 0, a.length-1);
     for(int t:a){
       System.out.print("\t"+t);
