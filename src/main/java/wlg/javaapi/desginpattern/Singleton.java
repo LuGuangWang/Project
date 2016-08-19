@@ -1,5 +1,8 @@
 package wlg.javaapi.desginpattern;
 
+/**
+ * 单例模式
+ */
 public class Singleton {
   
   private static volatile Singleton instance = null;
