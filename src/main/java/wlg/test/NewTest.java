@@ -13,7 +13,24 @@ public class NewTest {
 //    testSpring();
 //    format();
     System.out.println("result:" + (4>>1));
-    
+    isn(5);
+  }
+  
+  static void isn(int n){
+    float a = n;
+    if(a==1){
+      System.out.println("===>"+a);
+    }else{
+      while(true){
+        a /= 2;
+        if(a==1 || a != ((int) a)){
+          break;
+        }
+      }
+      if(a==1){
+        System.out.println("isn ====>>"+n);
+      }
+    }
   }
   
   static void format(){

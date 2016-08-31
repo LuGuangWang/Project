@@ -9,6 +9,10 @@ public class CacheUtil {
 
   private static CacheUtil instance;
 
+  private CacheUtil(){
+    
+  }
+  
   public synchronized static CacheUtil $() {
     if (instance == null) instance = new CacheUtil();
     return instance;
