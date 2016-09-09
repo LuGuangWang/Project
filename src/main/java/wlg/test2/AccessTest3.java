@@ -10,7 +10,7 @@ public class AccessTest3 extends AcessTest1{
   }
   
   public static void main(String[] args) {
-
+    
   }
 
 }
