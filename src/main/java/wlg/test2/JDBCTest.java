@@ -14,9 +14,9 @@ public class JDBCTest {
 
   static Connection getMysqlConn() throws SQLException {
     String driver = "com.mysql.jdbc.Driver";
-    String url = " ";
-    String username = " ";
-    String password = " ";
+    String url = "jdbc:mysql://10.202.202.43:3306/api?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull";
+    String username = "api";
+    String password = "p";
     Connection conn = null;
     try {
       // DriverManager requires the driver to be loaded via the system ClassLoader.
@@ -30,9 +30,9 @@ public class JDBCTest {
   
   private static Connection getSQLConn() throws SQLException {
     String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    String url = " ";
-    String username = " ";
-    String password = " ";
+    String url = "jdbc:sqlserver://10.202.202.245;databaseName=BJ20140915";
+    String username = "db_whbmowner";
+    String password = "levitra5gt#";
     Connection conn = null;
     try {
       // DriverManager requires the driver to be loaded via the system ClassLoader.
@@ -54,6 +54,8 @@ public class JDBCTest {
       System.out.println("============================");
       while (rs.next()) {
         for (int i = 1; i <= col; i++) {
+          System.out.print(rs.getMetaData().getColumnName(i) + "\t");
+          System.out.print(rs.getMetaData().getColumnType(i) + "\t");
           System.out.print(rs.getString(i) + "\t");
           if ((i == 2) && (rs.getString(i).length() < 8)) {
             System.out.print("\t");

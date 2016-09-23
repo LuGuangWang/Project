@@ -12,6 +12,11 @@ public class NewTest {
 //    testReturn();
 //    testSpring();
 //    format();
+    System.out.println("result:" + System.currentTimeMillis());
+    System.out.println(("result:" + System.currentTimeMillis()).hashCode());
+    
+    System.out.println("result:" + System.currentTimeMillis());
+    System.out.println(("result1:" + System.currentTimeMillis()).hashCode());
     System.out.println("result:" + (4>>1));
     isn(5);
   }
