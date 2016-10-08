@@ -1,6 +1,8 @@
 package wlg.test;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewTest {
   
@@ -12,13 +14,24 @@ public class NewTest {
 //    testReturn();
 //    testSpring();
 //    format();
-    System.out.println("result:" + System.currentTimeMillis());
-    System.out.println(("result:" + System.currentTimeMillis()).hashCode());
+//    isn(5);
     
-    System.out.println("result:" + System.currentTimeMillis());
-    System.out.println(("result1:" + System.currentTimeMillis()).hashCode());
-    System.out.println("result:" + (4>>1));
-    isn(5);
+  }
+  
+  
+  
+  static int[] twoSum1(int[] nums, int target) {
+    Map<Integer, Integer> nMap = new HashMap<>(nums.length);
+    for (int i = 1; i < nums.length; i++) {
+      nMap.put(nums[i - 1], i - 1);
+      if (nMap.containsKey(target - nums[i])) {
+        return new int[] {nMap.get(target - nums[i]), i};
+      }
+      if (nMap.containsKey(target - nums[nums.length-i])) {
+        return new int[] {nMap.get(target - nums[nums.length-i]), nums.length-i};
+      }
+    }
+    throw new IllegalArgumentException("No two sum solution");
   }
   
   static void isn(int n){

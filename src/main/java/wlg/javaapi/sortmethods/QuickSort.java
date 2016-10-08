@@ -61,7 +61,7 @@ public class QuickSort {
   }
 
   public static void main(String[] args) {
-    int a[] = {3};  
+    int a[] = {3,5,4,6,8,10,1,4,2};  
     quickSort(a, 0, a.length-1);
     for(int t:a){
       System.out.print("\t"+t);
