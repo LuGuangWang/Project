@@ -45,17 +45,22 @@ public class JDBCTest {
   }
 
   private static Integer getAll(Connection conn) throws SQLException {
-    String sql = "select t.nSchoolId,t.sCode,t.sName from bs_class t where t.nSchoolId=1 and t.sCode='VIPTVS15465'";
+//    String sql = "select t.nSchoolId,t.sCode,t.sName from bs_class t where t.nSchoolId=? and t.sCode=? limit ?,?";
+    String sql = "select top 10 id,scode,sname from ( select top 30 id,sCode,sname from bs_class where nschoolid=1 AND  (dtEndDate>getdate()) order by sCode asc)tmp  order by sCode desc";
     PreparedStatement pstmt;
     try {
       pstmt = conn.prepareStatement(sql);
+//      pstmt.setInt(1, 10);
+//      pstmt.setString(2, "CMQALL20164016");
+//      pstmt.setInt(3, 0);
+//      pstmt.setInt(4, 20);
       ResultSet rs = pstmt.executeQuery();
       int col = rs.getMetaData().getColumnCount();
       System.out.println("============================");
       while (rs.next()) {
         for (int i = 1; i <= col; i++) {
           System.out.print(rs.getMetaData().getColumnName(i) + "\t");
-          System.out.print(rs.getMetaData().getColumnType(i) + "\t");
+          System.out.print(rs.getMetaData().getColumnTypeName(i) + "\t");
           System.out.print(rs.getString(i) + "\t");
           if ((i == 2) && (rs.getString(i).length() < 8)) {
             System.out.print("\t");
