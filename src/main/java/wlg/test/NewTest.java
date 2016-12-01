@@ -1,12 +1,21 @@
 package wlg.test;
-
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class NewTest {
   
+  public NewTest(){
+    
+  }
+  
+  
+  
   public static void main(String[] args){
+    ClassLoader str = NewTest.class.getClassLoader();
+    System.out.println(str);
+    ClassLoader strs = Thread.currentThread().getContextClassLoader();
+    System.out.println(strs);
 //    testOperator();
 //    testLength();
 //    testIntegerMethod();

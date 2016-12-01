@@ -8,6 +8,7 @@ public class AnnotationMain {
   }
   
   public static void main(String[] args) throws Exception {
-    
+    AnnotationMain a = new AnnotationMain();
+    a.useAnnotation(null);
   }
 }
