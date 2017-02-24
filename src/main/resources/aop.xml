@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                http://www.springframework.org/schema/beans/spring-beans-2.0.xsd  
+              http://www.springframework.org/schema/aop  
+                http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<bean id="helloWorld" class="wlg.spring.impl.HelloWorldImpl" />
+	<bean id="helloChina" class="wlg.spring.impl.HelloChinaImpl" />
+
+	<bean id="logAdvice" class="wlg.spring.LogAdvice" />
+
+	<aop:config>
+		<aop:aspect ref="logAdvice">
+			<aop:pointcut id="logPointcut" expression="execution(* *(..))" />
+<!-- 			<aop:pointcut id="logPointcut" expression="execution(* wlg.spring.impl.HelloWorldImpl.*(..))" /> -->
+			<aop:before method="methodBefore" pointcut-ref="logPointcut" />
+			<aop:after method="methodAfter" pointcut-ref="logPointcut" />
+			<aop:after-throwing method="methodException" pointcut-ref="logPointcut" />
+			<!-- aroun最好不要和他们同时使用 -->
+<!-- 			<aop:around method="methodRound" pointcut-ref="logPointcut" /> -->
+		</aop:aspect>
+	</aop:config>
+</beans>  

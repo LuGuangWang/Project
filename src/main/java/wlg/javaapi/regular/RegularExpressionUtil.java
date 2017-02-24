@@ -14,6 +14,10 @@ public class RegularExpressionUtil {
     return !str.matches("[^0-9]{1,}");
   }
   
+  public static boolean isRight(String str){
+    return str.matches("^[0-9|A-Z]+$");
+  }
+  
   public static boolean isDigit(String str){
     if(StringUtils.isEmpty(str))
       return false;
@@ -21,7 +25,10 @@ public class RegularExpressionUtil {
   }
   
   public static void main(String[] args) {
-    String str = "中国";
+    String str = "T1Q2";
+    
+    System.out.println(isRight(str));
+    
     System.out.println(isContainDigit(str));
     
     String str1="1.6065361519348E13";

@@ -5,17 +5,27 @@ import java.util.Map;
 
 public class NewTest {
   
+  
+  class A{}
+  
+  
+  
   public NewTest(){
     
   }
   
-  
+  void test(){
+    new NewTest().new A();
+  }
+ 
+  public static void replaceStr(String str){
+    str = str.replaceAll("0+$", "");
+    System.out.println(str);
+  }
   
   public static void main(String[] args){
-    ClassLoader str = NewTest.class.getClassLoader();
-    System.out.println(str);
-    ClassLoader strs = Thread.currentThread().getContextClassLoader();
-    System.out.println(strs);
+    
+    replaceStr("200.0000");
 //    testOperator();
 //    testLength();
 //    testIntegerMethod();
@@ -25,15 +35,6 @@ public class NewTest {
 //    format();
 //    isn(5);
     
-    String num1 = "919";
-    String num2 = "13";
-    String sum = addStrings(num1, num2);
-    System.out.println(sum);
-    
-    float a = 0.1f;
-    float b = 0.1f;
-    float c = a*1000*b*1000/1000/1000;
-    System.out.println(c);
 //    int[] nums = {1, 5, 11, 5};
 //    System.out.println(canPartition(nums));
     
