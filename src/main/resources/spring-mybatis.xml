@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="parentDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<!-- 连接池启动时的初始值 -->
+		<property name="initialSize" value="2" />
+		<!-- 连接池的最大值 -->
+		<property name="maxActive" value="100" />
+		<!-- 最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请 -->
+		<property name="minIdle" value="2" />
+		<property name="maxWait" value="15000" />
+		<!-- mysql5.5及以上版本有PSCache，建议开启 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="100" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="180000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="testWhileIdle" value="true" />
+	</bean>
+
+	<bean id="masterDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		parent="parentDataSource" init-method="init" destroy-method="close">
+		<property name="url" value="${master.mysql.url}" />
+		<property name="username" value="${master.mysql.username}" />
+		<property name="password" value="${master.mysql.password}" />
+		<property name="validationQuery" value="SELECT 'x'" />
+	</bean>
+
+	<bean id="slaveDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		parent="parentDataSource" init-method="init" destroy-method="close">
+		<property name="url" value="${slave.mysql.url}" />
+		<property name="username" value="${slave.mysql.username}" />
+		<property name="password" value="${slave.mysql.password}" />
+		<property name="validationQuery" value="SELECT 'x'" />
+	</bean>
+
+
+	<!-- 动态数据源 -->
+	<bean id="dataSource" class="com.xdf.hills.common.expand.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="master" value-ref="masterDataSource" />
+				<entry key="slave" value-ref="slaveDataSource" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="masterDataSource" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 事务管理配置 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" /><!-- 新增 -->
+			<tx:method name="insert*" propagation="REQUIRED" /><!-- 新增 -->
+			<tx:method name="modify*" propagation="REQUIRED" /><!-- 修改 -->
+			<tx:method name="update*" propagation="REQUIRED" /><!-- 修改 -->
+			<tx:method name="remove*" propagation="REQUIRED" /><!-- 删除 -->
+			<tx:method name="delete*" propagation="REQUIRED" /><!-- 删除 -->
+			<tx:method name="set*" propagation="REQUIRED" /><!-- 设置 -->
+			<tx:method name="save*" propagation="REQUIRED" /><!-- 保存 -->
+			<tx:method name="assign*" propagation="REQUIRED" /><!--分配 -->
+			<tx:method name="copy*" propagation="REQUIRED" /><!--分配 -->
+			<tx:method name="synchronization*" propagation="REQUIRED" /><!-- 新增 -->
+			<tx:method name="generatorIdentity" propagation="NOT_SUPPORTED" /><!--生成ID  -->
+			
+
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="page*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="query*" propagation="SUPPORTS" read-only="true" /><!-- 
+				查询 -->
+			<tx:method name="*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<bean id="dynamicDatasourceProcessor" class="com.xdf.hills.common.expand.DynamicDataSourceProcessor" />
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="txPointcut"
+			expression="(execution(* com.xdf.hills.crmbase.core.backend.service.impl.*.*(..)) or 
+			execution(* com.xdf.hills.crmbase.core.frontend.allinone.service.impl.*.*(..)) or 
+			execution(* com.xdf.hills.crmbase.core.frontend.assemble.impl.*.*(..)) or
+			execution(* com.xdf.hills.crmbase.core.frontend.service.impl.*.*(..)) or 
+			execution(* com.xdf.hills.crmbase.core.base.scheduled.*.*(..)) or
+			execution(* com.xdf.hills.crmbase.core.base.util.*.*(..)) or
+			execution(* com.xdf.hills.crmbase.core.frontend.sheet.service.impl.*.*(..))
+			)" />
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
+	</aop:config>
+
+	<!-- 配置数据源和mapper配置文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="com.xdf.hills.crmbase.core.backend.model,com.xdf.hills.crmbase.core.frontend.model" />
+		<property name="mapperLocations">
+			<array>
+				<value>classpath:com/xdf/hills/crmbase/core/dao/sqlmap/backend/*.xml</value>
+				<value>classpath:com/xdf/hills/crmbase/core/dao/sqlmap/frontend/*.xml</value>
+			</array>
+		</property>
+		<property name="plugins">
+			<array>
+				<!-- 分页 -->
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<!-- 4.0.0以后版本可以不设置该参数 -->
+						<props>
+							<prop key="dialect">mysql</prop>
+							<!-- 3.3.0版本可用 - 分页参数合理化，默认false禁用 -->
+							<!-- 启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页 -->
+							<!-- 禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据 -->
+							<prop key="reasonable">true</prop>
+						</props>
+					</property>
+				</bean>
+				<bean class="com.xdf.hills.crmbase.core.base.aspect.MybatisInterceptor"/>
+			</array>
+		</property>
+	</bean>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	<!-- 扫描包注入mapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage"
+			value="com.xdf.hills.crmbase.core.backend.dao,com.xdf.hills.crmbase.core.frontend.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
+</beans>

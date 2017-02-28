@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd 
+           http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<aop:aspectj-autoproxy />
+
+	<bean id="placeholderConfig1"
+		class="com.xdf.hills.common.expand.PropertyPlaceholderConfigurerExpand">
+		<property name="order" value="1" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<array>
+				<value>classpath:/spring-context.properties</value>
+			</array>
+		</property>
+
+	</bean>
+
+
+
+
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+	<import resource="classpath*:/config/crmbase/core/spring-mybatis.xml" />
+	<context:component-scan use-default-filters="true" base-package="com.xdf.hills.crmbase.core.frontend" />
+	<context:component-scan use-default-filters="true" base-package="com.xdf.hills.crmbase.core.backend" />	
+	<context:component-scan use-default-filters="true" base-package="com.xdf.hills.crmbase.core.base" />
+
+
+	<!-- 启用spring cache -->
+	<cache:annotation-driven cache-manager="cacheManager" />
+	<bean id="redisSentinelConfiguration"
+		class="com.xdf.hills.crmbase.core.base.expand.RedisSentinelConfigurationExpand">
+		<property name="master">
+			<bean class="org.springframework.data.redis.connection.RedisNode">
+				<property name="name" value="${spring.redis.sentinel.master}"></property>
+			</bean>
+		</property>
+		<property name="redisNodes" value="${spring.redis.sentinel.nodes}" />
+	</bean>
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="${spring.redis.pool.max-idle}" />
+		<property name="maxTotal" value="${spring.redis.pool.max-total}" />
+		<property name="maxWaitMillis" value="${spring.redis.pool.max-wait}" />
+		<property name="minIdle" value="${spring.redis.pool.min-idle}" />
+	</bean>
+	<bean id="redisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="database" value="${spring.redis.database}" />
+		<property name="password" value="${spring.redis.password}" />
+		<constructor-arg name="sentinelConfig" ref="redisSentinelConfiguration"></constructor-arg>
+		<constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>
+	</bean>
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="redisConnectionFactory" />
+		<property name="enableTransactionSupport" value="true" />
+		<property name="keySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="valueSerializer">
+			<bean id="jackson2JsonRedisSerializer"
+				class="org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer">
+				<constructor-arg type="java.lang.Class" value="java.lang.Object" />
+				<property name="objectMapper">
+					<!-- <bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" 
+						/> -->
+					<bean id="objectMapper"
+						class="com.xdf.hills.crmbase.core.base.expand.ObjectMapperExpand" />
+				</property>
+			</bean>
+		</property>
+		<property name="hashKeySerializer">
+			<bean
+				class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+		</property>
+
+	</bean>
+
+	<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+	  <property name="defaultExpiration" value="1800" />
+		<property name="expires">
+			<map>
+				<entry key="xdfCrmCache30" value="30" />
+				<entry key="xdfCrmCache300" value="300" />
+				<entry key="u2" value="1800" />
+				<entry key="requestPassTime" value="86400" />
+			</map>
+		</property>
+		<constructor-arg name="template" ref="redisTemplate" />
+	</bean>
+	<!-- spring cache end -->
+
+
+ 
+
+
+	<task:annotation-driven executor="myExecutor"
+		scheduler="myScheduler" proxy-target-class="true" />
+	<task:executor id="myExecutor" pool-size="50" />
+	<task:scheduler id="myScheduler" pool-size="1000" />
+</beans>
