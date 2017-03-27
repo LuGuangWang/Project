@@ -13,7 +13,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 public class MsgProductor {
 
   public static void main(String[] args) throws JMSException {
-    String jmsProviderAddress = "tcp://localhost:61616";// 地址 
+    String jmsProviderAddress = "tcp://10.200.78.236:61616";// 地址 
     
     ConnectionFactory connectionFactory = new ActiveMQConnectionFactory( 
             jmsProviderAddress);// 连接器 

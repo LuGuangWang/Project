@@ -1,7 +1,10 @@
 package wlg.test;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class NewTest {
   
@@ -11,7 +14,7 @@ public class NewTest {
   
   
   public NewTest(){
-    
+    map.put("1", 0);
   }
   
   void test(){
@@ -22,10 +25,85 @@ public class NewTest {
     str = str.replaceAll("0+$", "");
     System.out.println(str);
   }
+  /**
+   * 1101.1 > 一千一百零一点一
+   */
+  public static String transfer(String numStr){
+    StringBuilder result = new StringBuilder();
+    String[] keyWord = {"零","一","二","三","四","五","六","七","八","九"};
+    String[] unit = {"点","","十","百","千","万"};
+    if(numStr != null){
+      if(numStr.contains(".")){
+        int spotIndex = numStr.indexOf("."),keyWordIndex;
+        String numStr1 = numStr.substring(0,spotIndex);
+        result.append(parseNumber(numStr1, keyWord, unit)).append(unit[0]);
+        while(spotIndex<numStr.length()-1){
+          keyWordIndex = Character.getNumericValue(numStr.charAt(++spotIndex));
+          result.append(keyWord[keyWordIndex]);
+        }
+      }else{
+        return parseNumber(numStr, keyWord, unit);
+      }
+    }
+    return result.toString();
+  }
+
+  private static String parseNumber(String numStr, String[] keyWord,String[] unit) {
+    StringBuilder result = new StringBuilder();
+    int unitIndex = numStr.length(),keyWordIndex,len=0;
+    while(len<numStr.length()){
+      keyWordIndex = Character.getNumericValue(numStr.charAt(len++));
+      if(keyWordIndex==0){
+        result.append(keyWord[keyWordIndex]);
+      }else{
+        result.append(keyWord[keyWordIndex]+unit[unitIndex]);
+      }
+      unitIndex--;
+    }
+    return result.toString();
+  }
+  
+  public static String findKey(String target,String keyWord) throws Exception{
+    String path=null,tmp1= target,tmp2= target,result;
+    int count = 0;
+    
+    if(target!=null && keyWord!=null){
+      path = "D:/result.txt";
+      try(FileWriter out = new FileWriter(new File(path));){
+        do{
+          tmp1 = tmp2;
+          tmp2 = tmp1.replaceFirst(keyWord, "");
+          count ++;
+        }while(tmp2.length()<tmp1.length());
+        result = "关键字" + keyWord + "在" + target +"出现次数为：" + (count-1);
+        out.write(result);
+      }
+    }
+    return path;
+  }
+  
+  public Map<String, Integer> map = new ConcurrentHashMap<String, Integer>();
+
+  public void add(String key){
+    synchronized(map){
+      Integer val = map.get(key);
+      int newVal = val+1;
+      map.put(key, newVal);
+    }
+  }
   
   public static void main(String[] args){
+    System.out.println( 6 & 4);
     
-    replaceStr("200.0000");
+//    String result = transfer("1001.12");
+//    System.out.println(result);
+    
+//    try {
+//      findKey("absssd","ab");
+//    } catch (Exception e) {
+//      System.out.println(e);
+//    }
+//    replaceStr("200.0000");
 //    testOperator();
 //    testLength();
 //    testIntegerMethod();
