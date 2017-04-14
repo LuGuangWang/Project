@@ -42,7 +42,7 @@ dependencies {
 }
 
 jar {
-    baseName = 'gs-gradle'
+    baseName = 'my_project'
     version =  '0.1.0'
 }
 

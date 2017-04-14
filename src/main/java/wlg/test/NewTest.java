@@ -2,6 +2,7 @@ package wlg.test;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -93,7 +94,7 @@ public class NewTest {
   }
   
   public static void main(String[] args){
-    System.out.println( 6 & 4);
+    System.out.println(Calendar.getInstance().get(Calendar.YEAR));
     
 //    String result = transfer("1001.12");
 //    System.out.println(result);
