@@ -6,6 +6,35 @@ import java.util.Stack;
  * 有n阶台阶，一次可走1阶或2阶，请问有多少种走法
  */
 public class WalkSteps {
+  //假设10个台阶
+  private final int target = 10;
+  
+  public static void main(String[] args) {
+    WalkSteps instance = new WalkSteps();
+    instance.walkRoute(instance.target);
+    
+    instance.walkRoute("",10);
+  }
+  
+  private void walkRoute(String route,int steps){
+    if(steps<0){
+      System.out.println("steps can't less-than zero.");
+      return;
+    }
+    if(steps == 1){
+      System.out.println(route + 1);
+      return;
+    }
+    if(steps == 0){
+      System.out.println(route);
+      return;
+    }
+    
+    for(int i=1;i<=2;i++){
+      walkRoute(route + i + " ",steps - i);
+    }
+  }
+  
   class Tree{
     private int data;
     private Tree left;
@@ -35,8 +64,6 @@ public class WalkSteps {
     }
     
   }
-  
-  private final int target = 10;
   
   /**
    * 用深度搜索遍历树的方式
@@ -88,10 +115,4 @@ public class WalkSteps {
     }
   }
   
-  
-  public static void main(String[] args) {
-    WalkSteps instance = new WalkSteps();
-    instance.walkRoute(instance.target);
-  }
-
 }
