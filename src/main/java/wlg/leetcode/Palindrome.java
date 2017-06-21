@@ -1,4 +1,4 @@
-package wlg.arithmetic;
+package wlg.leetcode;
 
 /**
  * 给定一个字符串，求它的最长回文子串长度。
