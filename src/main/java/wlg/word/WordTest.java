@@ -6,20 +6,15 @@ import org.ansj.app.keyword.KeyWordComputer;
 import org.ansj.app.keyword.Keyword;
 import org.ansj.splitWord.analysis.NlpAnalysis;
 import org.ansj.splitWord.analysis.ToAnalysis;
-import org.apdplat.word.WordSegmenter;
-import org.apdplat.word.segmentation.Word;
 
 public class WordTest {
 	
 	public static void main(String[] args) {
-		String str = "荣耀 NOTE 8 4GB+64GB 全网通手机 冰河银" ;
+		String str = "华为(HUAWEI)M3 8.4英寸 平板电脑(2560x1600 麒麟950 哈曼卡顿音效 4G/32G WiFi)日晖金" ;
 		System.out.println(ToAnalysis.parse(str));
 		System.out.println(NlpAnalysis.parse(str));
 		
-		List<Word> w = WordSegmenter.seg(str);
-		System.out.println(w);
-		
-		KeyWordComputer kwc = new KeyWordComputer(5);
+		KeyWordComputer kwc = new KeyWordComputer(10);
 		List<Keyword> words = kwc.computeArticleTfidf(str);
 		System.out.println(words);
 	}
