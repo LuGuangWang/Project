@@ -1,5 +1,6 @@
 package wlg.test;
 
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import com.google.common.base.Strings;
 
@@ -111,50 +113,6 @@ public class Test{
   }
   
   public static void main(String[] args) throws Exception{
-    int i=2;
-    testIntParam(i++);
-    System.out.println("----:"+i);
-      
-    String str2 = "";
-    System.out.println(str2+",2");
-    
-    replaceHanziStr("每周六日8：00-10:00,13:00-15:00；周一10:30-12:00，13:00-15:00");
-    
-    testListSize();
-    
-    System.out.println(String.valueOf(System.currentTimeMillis()-1443148421988L));
-    
-    
-    replaceStr("1.000000");
-
-    testContain();
-    
-    System.out.println("是否都是数字："+isDigit("1232131")+" 是否含有数字："+containDigit("1232131哈"));
-    
-    String str = "尖1子1尖1子2目标";
-    System.out.println(str.contains("尖子"));
-    System.out.println(str.contains("目标"));
-    
-    System.out.println(testCompareTime());
-    testSplit();
-//    System.out.println("this is my fisrt github source code.");
-//    MyInterface in = new Interface2();
-//    in.test();
-    
-//    String time = "2015-01-01";
-//    int length = time.length();
-//    System.out.println(time + " " + length + " "+ (time.length()==10));
-//    
-//    if(time.length()>10){
-//    	time = time.substring(0,10)+" 23:59:59";
-//    }
-//    else{
-//    	time += " 23:59:59";
-//    }
-//    length = time.length();
-//    System.out.println(time + " " + length);
-	  
-//	  int year = Calendar.getInstance().get(Calendar.YEAR);
-//	  System.out.println(year);
+	  System.out.println(URLEncoder.encode("%E4%B8%AD%E5%9B%BD", "utf-8"));
   }
 }

@@ -2,10 +2,17 @@ package wlg.test;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import org.json.JSONObject;
+import org.springframework.boot.jackson.JsonObjectSerializer;
+
+import wlg.apiutil.jsonutil.JSONUtil;
 
 public class NewTest {
   
@@ -95,6 +102,16 @@ public class NewTest {
   
   public static void main(String[] args){
     System.out.println(Calendar.getInstance().get(Calendar.YEAR));
+    
+    List<String> tmp = new ArrayList<>();
+    tmp.add("dddd");
+    
+    List<String> result = new ArrayList<>();
+    result.addAll(tmp);
+    tmp.clear();
+    System.out.println(JSONUtil.toJson(result));
+    
+    
     
 //    String result = transfer("1001.12");
 //    System.out.println(result);

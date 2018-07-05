@@ -1,5 +1,7 @@
 package wlg.webapi.web.controller;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,5 +25,23 @@ public class TestController {
 	System.out.println(file2.getName());
 	System.out.println(params);
     dao.printCount();
+  }
+  
+  @RequestMapping("/test")
+  public String testClass(Params params,MultipartFile key){
+	System.out.println(key.getName());
+	try {
+		key.transferTo(new File("/work/test.jpg"));
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+//	Iterator<String> names = request.getFileNames();  
+//	while(names.hasNext()) {
+//		System.out.println(names.next());
+//	}
+	System.out.println(params);
+    dao.printCount();
+    return "test";
   }
 }

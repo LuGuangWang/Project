@@ -11,6 +11,8 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
@@ -40,5 +42,19 @@ public class HttpUtil {
     } finally {
       IOUtils.closeQuietly(response2);
     }
+  }
+  
+  public static void main(String[] args) throws Exception {
+	  String url="http://localhost:8080/test_class2";
+	  HttpPost post = new HttpPost(url);
+	  post.setHeader("Accept-Charset", "UTF-8");
+	  
+	  MultipartEntity entity = new MultipartEntity();
+      entity.addPart("code", new StringBody("1"));
+      entity.addPart("name", new StringBody("2"));
+	  post.setEntity(entity);
+	  
+	  CloseableHttpClient httpclient = HttpClients.createDefault();
+	  httpclient.execute(post);
   }
 }
