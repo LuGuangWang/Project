@@ -36,7 +36,7 @@ public class ConnectUtil {
     // being the 'master', the rest being any number
     // of slaves that the driver will load balance against
     //
-    Connection conn = driver.connect("jdbc:mysql:replication://10.202.202.43:3306,192.168.25.241:3306,10.202.202.43:3306/api?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull",
+    Connection conn = driver.connect("jdbc:mysql:replication://XXXX:3306,XXX:3306,XXX:3306/api?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull",
                                      props);
 
     //
@@ -56,8 +56,8 @@ public class ConnectUtil {
     // We want to load balance between the slaves
     props.put("roundRobinLoadBalance", "true");
 
-    props.put("user", "api");
-    props.put("password", "p");
+    props.put("user", "XXX");
+    props.put("password", "XXX");
     return props;
   }
   
