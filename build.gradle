@@ -44,6 +44,9 @@ dependencies {
     compile 'org.apache.logging.log4j:log4j-core:2.9.1'
     compile 'org.apache.logging.log4j:log4j-api:2.9.1'
     
+    compile 'org.eclipse.californium:californium-core:2.0.0-M11'
+    compile 'org.eclipse.californium:element-connector-tcp:2.0.0-M11'
+    
     compile fileTree(dir: 'libs', include: '*.jar')
     testCompile 'com.google.truth:truth:0.27'
     testCompile "org.springframework.boot:spring-boot-starter-test"

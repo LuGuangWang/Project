@@ -4,11 +4,12 @@ import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import com.alibaba.fastjson.JSONObject;
@@ -29,7 +30,7 @@ public class ESTest {
 			client = new PreBuiltTransportClient(settings);
 			client.addTransportAddress(new TransportAddress(InetAddress.getByName("localhost"), 9300));
 			
-			
+//			
 			Msg m1 = new Msg();
 			m1.setName("sss");
 			
@@ -54,8 +55,8 @@ public class ESTest {
 //				e.printStackTrace();
 //			}
 			
-			IndexResponse index = client.prepareIndex("vd_iot_device_log5", "device_log5").setSource(msg).get();
-			System.out.println(index);
+//			IndexResponse index = client.prepareIndex("vd_iot_device_log5", "device_log5").setSource(msg).get();
+//			System.out.println(index);
 			
 			
 //			GetResponse response = client.prepareGet("vd_iot_device_log", "device_log", "1").get();
@@ -66,12 +67,13 @@ public class ESTest {
 //			System.out.print(build2.toString());
 			
 			
-			SearchResponse search = client.prepareSearch("vd_iot_device_log5")
-			        .setTypes("device_log5")
+			SearchResponse search = client.prepareSearch("vd_iot_device_log")
+			        .setTypes("device_log")
 //			        .setQuery(QueryBuilders.termQuery("productCode", "p2"))                 // Query
 //			        .setPostFilter(QueryBuilders.boolQuery().should(build).should(build2)) 
+			        .setPostFilter(QueryBuilders.wildcardQuery("deviceName", "lg_test7*"))
 			        .setFrom(0).setSize(25)
-//			        .addSort("dateTime", SortOrder.DESC)
+			        .addSort("dateTime", SortOrder.DESC)
 			        .get();
 			
 			search.getHits().forEach(item->{
