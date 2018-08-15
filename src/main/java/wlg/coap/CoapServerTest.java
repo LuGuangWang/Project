@@ -83,18 +83,14 @@ public class CoapServerTest extends CoapServer {
 
 		@Override
 		public void handleGET(CoapExchange exchange) {
-			for(int i=0;i<10;i++) {
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				// respond to the request
-				exchange.respond("Hello World! " + i);
-			}
+			// respond to the request
+			exchange.respond("GET Hello World! ");
 		}
 		
+		@Override
+		public void handlePOST(CoapExchange exchange) {
+			exchange.respond("POST Hello World");
+		}
 	}
 
 }

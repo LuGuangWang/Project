@@ -30,6 +30,11 @@ public class ESTest {
 			client = new PreBuiltTransportClient(settings);
 			client.addTransportAddress(new TransportAddress(InetAddress.getByName("localhost"), 9300));
 			
+//			Settings settings = Settings.builder()
+//					.put("cluster.name", "jiesi-6.1.1")
+//					.put("client.transport.sniff", false).build();
+//			client = new PreBuiltTransportClient(settings);
+//			client.addTransportAddress(new TransportAddress(InetAddress.getByName("192.168.182.12"), 20103));
 //			
 			Msg m1 = new Msg();
 			m1.setName("sss");
@@ -72,13 +77,15 @@ public class ESTest {
 //			        .setQuery(QueryBuilders.termQuery("productCode", "p2"))                 // Query
 //			        .setPostFilter(QueryBuilders.boolQuery().should(build).should(build2)) 
 			        .setPostFilter(QueryBuilders.wildcardQuery("deviceName", "lg_test7*"))
-			        .setFrom(0).setSize(25)
+			        .setFrom(0).setSize(5)
 			        .addSort("dateTime", SortOrder.DESC)
 			        .get();
 			
 			search.getHits().forEach(item->{
-				System.out.println(item.getSourceAsString());
+				System.out.println(item.getSourceAsMap());
 			});
+			
+			System.out.println(search.getHits().totalHits);
 			
 //			SearchResponse all = client.prepareSearch().get();
 //			System.out.println(all);
