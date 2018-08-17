@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.CountDownLatch;
 
 public class HttpClient {
 	private String baseUrl;
@@ -18,7 +19,7 @@ public class HttpClient {
 
 		HttpURLConnection connection = (HttpURLConnection) (new URL(url)).openConnection();
 
-		connection.setRequestMethod("POST");
+		connection.setRequestMethod("GET");
 		connection.setUseCaches(false);
 		connection.setDoOutput(true);
 		connection.setConnectTimeout(3000);
@@ -41,6 +42,27 @@ public class HttpClient {
 		int statecode = connection.getResponseCode();
 
 		return statecode;
+	}
+	
+	public static void main(String[] args) {
+		for(int i = 0;i<200;i++){
+		
+			HttpClient client = new HttpClient("http://localhost:8080");
+			try {
+				client.post("/test2", "{\"m\":1}");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		CountDownLatch lock = new CountDownLatch(1);
+		try {
+			lock.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
