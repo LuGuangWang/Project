@@ -1,5 +1,6 @@
 package wlg.javaapi.image;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -19,8 +20,8 @@ public class WordToImgTest {
 		
 			Graphics g = image.getGraphics();
 			g.setFont(g.getFont().deriveFont(30f));
-			
-			g.drawString("美丽风景图", 100, 100);
+			g.setColor(Color.blue);
+			g.drawString("IOT 要火,火,火.", 500, 300);
 			g.dispose();
 			
 			ImageIO.write(image, "jpg", new File("/home/seven/Desktop/test.jpg"));
