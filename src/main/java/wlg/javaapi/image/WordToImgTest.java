@@ -22,7 +22,7 @@ public class WordToImgTest {
 			Graphics g = image.getGraphics();
 			g.setFont(g.getFont().deriveFont(30f));
 			g.setColor(Color.blue);
-			g.drawString("IOT 要火,火,火.", 500, 300);
+			g.drawString("IOT 要火,火,火.IOT 要火,火,火.IOT 要火,火,火.IOT 要火,火,火.IOT 要火,火,火.IOT 要火,火,火.IOT 要火,火,火.IOT 要火,火,火.", 500, 300);
 			g.dispose();
 			
 			ImageIO.write(image, "jpg", new File("/home/seven/Desktop/test.jpg"));
