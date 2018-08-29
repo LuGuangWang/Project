@@ -7,17 +7,14 @@ import java.util.Random;
 public class NewTest2 {
   
   public static void main(String[] args) {
-	  int size = -Math.floorDiv(0, 5);
-	  System.out.println("size:" + size);
-	  
-	  
-	  
+//	  int size = -Math.floorDiv(0, 5);
+//	  System.out.println("size:" + size);
 	  
 	  
 //    System.out.println(testReturn());
-    List<Integer> arr= Arrays.asList(1,2,3,4,1,6,7,8,9);
-    arr.sort((a,b)->b-a);
-    System.out.println(count(arr,1));
+//    List<Integer> arr= Arrays.asList(1,2,3,4,1,6,7,8,9);
+//    arr.sort((a,b)->b-a);
+//    System.out.println(count(arr,1));
 //    testCycle();
   }
   

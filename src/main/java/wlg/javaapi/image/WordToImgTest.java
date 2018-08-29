@@ -18,6 +18,7 @@ public class WordToImgTest {
 		try {
 			BufferedImage image = ImageIO.read(new File("/home/seven/Desktop/12.jpg"));
 		
+			
 			Graphics g = image.getGraphics();
 			g.setFont(g.getFont().deriveFont(30f));
 			g.setColor(Color.blue);

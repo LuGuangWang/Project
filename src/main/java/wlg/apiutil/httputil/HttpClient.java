@@ -45,13 +45,14 @@ public class HttpClient {
 	}
 	
 	public static void main(String[] args) {
-		for(int i = 0;i<200;i++){
+		SecurityManager sm = System.getSecurityManager();
 		
+		
+		for(int i = 0;i<200;i++){
 			HttpClient client = new HttpClient("http://localhost:8080");
 			try {
 				client.post("/test2", "{\"m\":1}");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -60,7 +61,6 @@ public class HttpClient {
 		try {
 			lock.await();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -27,7 +27,7 @@ public class TestController {
     dao.printCount();
   }
   
-  @RequestMapping("/test")
+  @RequestMapping("/test_img")
   public String testClass(Params params,MultipartFile key){
 	System.out.println(key.getName());
 	try {

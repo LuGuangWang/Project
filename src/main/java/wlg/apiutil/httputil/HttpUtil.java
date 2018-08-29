@@ -45,12 +45,12 @@ public class HttpUtil {
   }
   
   public static void main(String[] args) throws Exception {
-	  String url="http://localhost:8080/test_class2";
+	  String url="http://localhost:8080/test2";
 	  HttpPost post = new HttpPost(url);
 	  post.setHeader("Accept-Charset", "UTF-8");
 	  
 	  MultipartEntity entity = new MultipartEntity();
-      entity.addPart("code", new StringBody("1"));
+      entity.addPart("m", new StringBody("1"));
       entity.addPart("name", new StringBody("2"));
 	  post.setEntity(entity);
 	  

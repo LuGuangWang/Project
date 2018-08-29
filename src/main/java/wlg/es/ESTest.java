@@ -8,6 +8,8 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
+import org.elasticsearch.index.query.AbstractQueryBuilder;
+import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
@@ -67,7 +69,8 @@ public class ESTest {
 //			GetResponse response = client.prepareGet("vd_iot_device_log", "device_log", "1").get();
 //			System.out.println(response.toString());
 			
-//			AbstractQueryBuilder<?> build = QueryBuilders.matchQuery("msg", "hello world");
+			AbstractQueryBuilder<?> build = QueryBuilders.matchQuery("msg", "lg");
+			AbstractQueryBuilder<?> build2 = QueryBuilders.wildcardQuery("deviceName", "lg_test7*");
 //			AbstractQueryBuilder<?> build2 = QueryBuilders.rangeQuery("dateTime").from(111111212).to(111111212);
 //			System.out.print(build2.toString());
 			
@@ -75,8 +78,8 @@ public class ESTest {
 			SearchResponse search = client.prepareSearch("vd_iot_device_log")
 			        .setTypes("device_log")
 //			        .setQuery(QueryBuilders.termQuery("productCode", "p2"))                 // Query
-//			        .setPostFilter(QueryBuilders.boolQuery().should(build).should(build2)) 
-			        .setPostFilter(QueryBuilders.wildcardQuery("deviceName", "lg_test7*"))
+			        .setPostFilter(QueryBuilders.boolQuery().must(build).must(build2)) 
+//			        .setPostFilter(QueryBuilders.wildcardQuery("deviceName", "lg_test7*"))
 			        .setFrom(0).setSize(5)
 			        .addSort("dateTime", SortOrder.DESC)
 			        .get();
