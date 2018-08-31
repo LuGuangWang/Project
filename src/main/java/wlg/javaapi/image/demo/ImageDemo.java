@@ -74,8 +74,13 @@ public class ImageDemo {
 		panal.drawString(RMB,left_x+1,blow_y);
 		//价格整数部分
 		left_x += rwidth;
-		
-		
+		Font font5 = new Font("Arial Bold 44",Font.PLAIN,44);
+		panal.setFont(font5);
+		FontMetrics fm5 = panal.getFontMetrics();
+		int pwidth = fm5.stringWidth(price);
+		fm5.getHeight();
+		panal.drawString(price,left_x+1,blow_y);
+		left_x += pwidth;
 		//商品属性
 		
 		//二维码
