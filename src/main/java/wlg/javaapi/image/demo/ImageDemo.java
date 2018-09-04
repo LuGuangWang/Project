@@ -22,23 +22,28 @@ public class ImageDemo {
 	private static String price_dot = "99";
 	private static String comment = "设计优良；音质极佳";
 	private static String skuProp = "产地：中国 规格：见包装 单位：个  等级：合格";
-	private static String blow = "商品编码:3926295 监督电话:400-606-5500 举报电话:12358";
-	private static String QCode = "/home/seven/Desktop/05.png";
+	private static String blow = "商品编码:3926295 监督电话:400-606-5500 价格举报电话:12358";
+	private static String QCode = "C:/Users/wangluguang/Desktop/05.png";
 	private static String scan = "扫一扫看商品详情";
 	
 	public static void main(String[] args) {
 		try {
-			String image = "/home/seven/Desktop/image_demo.png";
+			String image = "C:/Users/wangluguang/Desktop/test.png";
 			BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+			
 			// 背景色
 			Graphics2D panal = img.createGraphics();
+			//抗锯齿
+//			panal.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);  
+//			panal.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);  
+			
 			panal.setColor(Color.WHITE);
 			panal.fillRect(0, 0, width, height);
 
 			panal.setColor(Color.BLACK);
 			/** ************ 第一行 ********** **/
 			// 商品名称
-			Font font = new Font("Zfull-GB Bold 24", Font.PLAIN, 24);
+			Font font = new Font("Zfull-GB Bold 18", Font.BOLD, 18);
 			panal.setFont(font);
 			FontMetrics fm = panal.getFontMetrics();
 			int fwidth = fm.stringWidth(skuName);
@@ -46,7 +51,7 @@ public class ImageDemo {
 			int center = (width - fwidth) / 2;
 			panal.drawString(skuName, center, fm.getAscent());
 			// 下划线
-			panal.fillRect(0, fm.getAscent() + 1, width, 1);
+			panal.fillRect(0, fm.getAscent() + 5, width, 1);
 			/** ************ 第二行 ********** **/
 			// 好评度
 			Font font2 = new Font("Zfull-GB Regular 13", Font.PLAIN, 13);
@@ -89,10 +94,10 @@ public class ImageDemo {
 			// 价格小数部分
 			left_x += pwidth;
 			top_y += gap;
-			Font font6 = new Font("Arial Bold 16", Font.PLAIN, 16);
+			Font font6 = new Font("Arial Bold 16", Font.BOLD, 16);
 			panal.setFont(font6);
 			FontMetrics fm6 = panal.getFontMetrics();
-			int pdwidth = fm5.stringWidth(price_dot);
+			int pdwidth = fm6.stringWidth(price_dot);
 			fm6.getHeight();
 			panal.drawString(price_dot, left_x + 1, top_y);
 			// 评论词
@@ -107,16 +112,16 @@ public class ImageDemo {
 
 			// 商品属性
 			blow_y = blow_y + gap + 20;
-			Font font8 = new Font("Zfull-GB Regular 10", Font.PLAIN, 10);
+			Font font8 = new Font("Zfull-GB Regular 12", Font.PLAIN, 12);
 			panal.setFont(font8);
 			FontMetrics fm8 = panal.getFontMetrics();
 			fm8.stringWidth(skuProp);
 			fm8.getHeight();
-			panal.drawString(skuProp, gap, blow_y + gap);
+			panal.drawString(skuProp, gap, blow_y + gap + 5);
 			left_x += pdwidth;
 
 			// 底部
-			Font font9 = new Font("Zfull-GB Regular 10", Font.PLAIN, 10);
+			Font font9 = new Font("Zfull-GB Regular 12", Font.PLAIN, 12);
 			panal.setFont(font9);
 			FontMetrics fm9 = panal.getFontMetrics();
 			fm9.stringWidth(blow);
@@ -125,7 +130,7 @@ public class ImageDemo {
 			left_x += pdwidth;
 
 			// 二维码
-			Font font10 = new Font("Zfull-GB Regular 10", Font.PLAIN, 10);
+			Font font10 = new Font("Zfull-GB Regular 12", Font.PLAIN, 12);
 			panal.setFont(font10);
 			FontMetrics fm10 = panal.getFontMetrics();
 			int sw = fm10.stringWidth(scan);
@@ -139,6 +144,7 @@ public class ImageDemo {
 
 			ImageIO.write(img, "png", new File(image));
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("==========error");
 		}
 	}
