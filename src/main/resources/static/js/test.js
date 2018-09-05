@@ -1,3 +1,4 @@
+alert("OK")
 function testShowMsg(){
-		alert("OK");
-	}
+	alert("OK1");
+}
