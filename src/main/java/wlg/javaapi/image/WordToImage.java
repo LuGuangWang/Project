@@ -19,7 +19,6 @@ public class WordToImage {
 		BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
 		
 		Graphics2D g2d = img.createGraphics();
-		
 		Font font = new Font("Arial",Font.PLAIN,32);
 		
 		g2d.setFont(font);

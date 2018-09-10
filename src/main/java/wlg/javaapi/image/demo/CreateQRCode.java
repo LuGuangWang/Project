@@ -38,11 +38,13 @@ public class CreateQRCode {
 		try {
 			MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 			BitMatrix bm = multiFormatWriter.encode(url, BarcodeFormat.QR_CODE, width, height, hints);
-		
-			image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+			//去除白边
+			bm = deleteWhite(bm,width);
+			
+			image = new BufferedImage(bm.getWidth(), bm.getHeight(), BufferedImage.TYPE_INT_RGB);
 			// 开始利用二维码数据创建Bitmap图片
-			for (int x = 0; x < width; x++) {
-				for (int y = 0; y < height; y++) {
+			for (int x = 0; x < bm.getWidth(); x++) {
+				for (int y = 0; y < bm.getHeight(); y++) {
 					image.setRGB(x, y, bm.get(x, y) ? QRCOLOR : BGWHITE);
 				}
 			}
@@ -51,5 +53,22 @@ public class CreateQRCode {
 			e.printStackTrace();
 		}
 		return image;
+	}
+	
+	private BitMatrix deleteWhite(BitMatrix matrix,int size) {
+		int[] rec = matrix.getEnclosingRectangle();
+		int qrsize = rec[2];
+		if(qrsize<size) {
+			BitMatrix resMatrix = new BitMatrix(qrsize, qrsize);
+			for (int i = 0; i < qrsize; i++) {
+				for (int j = 0; j < qrsize; j++) {
+					if (matrix.get(i + rec[0], j + rec[1]))
+						resMatrix.set(i, j);
+				}
+			}
+			return resMatrix;
+		}else {
+			return matrix;
+		}
 	}
 }

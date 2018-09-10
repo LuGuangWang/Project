@@ -1,6 +1,6 @@
 {
-"width":296,
-"height":128,
+"width":592,
+"height":256,
 "esl_id":"50-14-BE-EE",
 "contents":[{
 "x":0,
@@ -13,13 +13,13 @@
 "content":"https://www.jd.com",
 "x":200,
 "y":30,
-"size":60
+"size":120
 },{
 "type":"rect",
 "x":0,
 "y":40,
 "width":296,
-"height":2
+"height":4
 },{
 "type":"roundRect",
 "x":20,

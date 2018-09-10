@@ -4,12 +4,16 @@ import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.index.query.AbstractQueryBuilder;
-import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
@@ -105,10 +109,38 @@ public class ESTest {
 		
 	}
 	
+	void saveEs() throws Exception {
+		Map<String,Object> msg = new HashMap<>();
+		msg.put("productCode", "p1");
+		msg.put("dateTime", 11111121);
+		msg.put("msg", "test" );
+		
+		HttpClientBuilder builder = HttpClientBuilder.create();
+		builder.setMaxConnPerRoute(10);
+		builder.setMaxConnTotal(10);
+		CloseableHttpClient client = builder.build();
+		HttpPost httpPost = new HttpPost("http://localhost:9200/vd_iot_device_log/device_log");
+		
+		for(int i = 0;i<100;i++) {
+			
+			StringEntity se=new StringEntity(JSONObject.toJSONString(msg),"UTF-8");
+			se.setContentType("application/json");
+			httpPost.setEntity(se);
+			HttpResponse response = client.execute(httpPost);
+			int status = response.getStatusLine().getStatusCode();
+			
+			System.out.println("=====status" + status + " res:" + response);
+		}
+	}
+	
 	public static void main(String[] args) {
 		ESTest es = new ESTest();
-		es.testGet();
-		
+//		es.testGet();
+		try {
+			es.saveEs();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

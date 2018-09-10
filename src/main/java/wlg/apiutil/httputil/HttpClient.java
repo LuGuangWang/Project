@@ -45,8 +45,6 @@ public class HttpClient {
 	}
 	
 	public static void main(String[] args) {
-		SecurityManager sm = System.getSecurityManager();
-		
 		
 		for(int i = 0;i<200;i++){
 			HttpClient client = new HttpClient("http://localhost:8080");
