@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import wlg.core.api.STZSApi;
+
 @Controller
 public class WebController {
 
@@ -23,5 +25,10 @@ public class WebController {
   @RequestMapping(value="/compare/class",method=RequestMethod.GET)
   public String showClassResult(){
     return "compare/compare_class";
+  }
+  
+  public static void main(String[] args) {
+	  STZSApi.$().getWjs();
+	  System.out.print("====");
   }
 }

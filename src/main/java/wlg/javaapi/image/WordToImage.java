@@ -29,12 +29,13 @@ public class WordToImage {
 		
 		
 		
-		g2d.setColor(Color.BLUE);
+		g2d.setColor(new Color(0));
 		g2d.drawString(text, 0, fm.getAscent());
 		
 		g2d.dispose();
 		
 		try {
+			
 			ImageIO.write(img, "png", new File("/home/seven/Desktop/test.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

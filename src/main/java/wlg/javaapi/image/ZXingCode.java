@@ -16,6 +16,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
@@ -29,6 +30,7 @@ public class ZXingCode {
     private static final int QRCOLOR = 0xFF000000; // 默认是黑色
     private static final int BGWHITE = 0xFFFFFFFF; // 背景颜色
 
+    
     private static final int WIDTH = 400; // 二维码宽
     private static final int HEIGHT = 400; // 二维码高
 
@@ -47,9 +49,28 @@ public class ZXingCode {
         File QrCodeFile = new File("/home/seven/Desktop/05.png");
         String url = "https://www.baidu.com/";
         String note = "访问百度连接";
+        String imagePath = "/home/seven/Desktop/06.png";
         drawLogoQRCode(logoFile, QrCodeFile, url, note);
+        encode("6922848641310", 103, 23, imagePath);
+        
     }
-
+	/**
+	 * 生成条形码
+	 * 
+	 * @param contents
+	 * @param width
+	 * @param height
+	 * @param imgPath
+	 */
+	public static void encode(String contents, int width, int height, String imgPath) {
+		try {
+			BitMatrix bitMatrix = new MultiFormatWriter().encode(contents,BarcodeFormat.EAN_13, width, height, null);
+			MatrixToImageWriter.writeToPath(bitMatrix, "png", new File(imgPath).toPath());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+    
     // 生成带logo的二维码图片
     public static void drawLogoQRCode(File logoFile, File codeFile, String qrUrl, String note) {
         try {
