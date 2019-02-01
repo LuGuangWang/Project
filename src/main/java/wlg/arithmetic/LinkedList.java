@@ -1,5 +1,9 @@
 package wlg.arithmetic;
-
+/**
+ * 反转链表
+ * @author seven
+ *
+ */
 public class LinkedList {
 
 	public static void main(String[] args) {
