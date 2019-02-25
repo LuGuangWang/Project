@@ -25,7 +25,6 @@ public class JosephProblem {
     }else if(n>0){
       index = (printJoseph2(n-1,m)+m)%n;
     }
-    n --;
     return index;
   }
   

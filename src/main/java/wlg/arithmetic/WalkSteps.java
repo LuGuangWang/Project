@@ -14,6 +14,19 @@ public class WalkSteps {
     instance.walkRoute(instance.target);
     
     instance.walkRoute("",10);
+    
+    int res = instance.walkCount(10);
+    System.out.println(res);
+  }
+  
+  private int walkCount(int steps) {
+	  int res = 0;
+	  if(steps==0 || steps==1 || steps==2) {
+		  res = steps;
+	  }else {
+		  res = walkCount(steps-1) + walkCount(steps-2);
+	  }
+	  return res;
   }
   
   private void walkRoute(String route,int steps){
