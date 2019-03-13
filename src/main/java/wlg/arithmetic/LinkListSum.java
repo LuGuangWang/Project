@@ -64,7 +64,7 @@ public class LinkListSum {
 			flag = sum(a.next,b.next);
 		}
 		val = a.data + b.data + flag;
-		flag = val>=9?1:0;
+		flag = val>=10?1:0;
 		val = val % 10;
 		a.data=val;
 		
