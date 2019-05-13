@@ -16,7 +16,8 @@ public class WebInterceptor implements HandlerInterceptor {
       throws Exception {
     // 处理跨域问题 有安全隐患
     response.setHeader("X-Frame-Options", "ALLOW-FROM");
-    response.setHeader("Access-Control-Allow-Origin", "*");
+    //添加add_header时，需要指定always，否则当接口4xx和5xx时，浏览器依旧会报跨域问题
+    response.setHeader("Access-Control-Allow-Origin", "* always");
     response.setHeader("Access-Control-Allow-Headers",
                        "Origin, X-Requested-With, Content-Type, Accept");
     return true;
