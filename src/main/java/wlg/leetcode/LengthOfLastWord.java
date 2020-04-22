@@ -10,17 +10,18 @@ public class LengthOfLastWord {
   }
   
   public int lengthOfLastWord(String s) {
-    s = s.trim();
     char[] eles = s.toCharArray();
-    int result = eles.length;
-    
+    char flag1 = ' ';
+    int cnt = 0;
+
     for(int i = eles.length - 1;i>=0;i--){
-      if(eles[i] == ' '){
-        result = eles.length - 1 - i;
+      if(eles[i] != flag1){
+        cnt++;
+      }else if(cnt>0){
         break;
       }
     }
     
-    return result;
+    return cnt;
   }
 }
