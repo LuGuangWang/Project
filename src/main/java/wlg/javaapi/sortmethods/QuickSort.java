@@ -29,34 +29,28 @@ public class QuickSort {
   private static int getMiddle(int[] a, int low, int high) {
     int baseKey = a[low],tmp;
     while(low < high){
-      while(low<high && a[high] >= baseKey){
+      while(low<high && a[high] > baseKey){
         high--;
       }
-      
-      if(low!=high){
-        tmp = a[low];
-        a[low] = a[high];
-        a[high] = tmp;
+
+      while(low<high && a[low] < baseKey){
+        low ++;
+      }
+
+      if(a[low]==a[high] && low<high){
         low ++;
       }else{
-        break;
-      }
-      
-      while(low<high && a[low] <= baseKey){
-        low ++;
-      }
-      if(low!=high){
         tmp = a[low];
         a[low] = a[high];
         a[high] = tmp;
-        high --;
       }
+
     }
     
     for(int t:a){
-      System.out.print("===>"+t);
+      System.out.print(t + " ");
     }
-    System.out.print("\n");
+    System.out.println();
     return low;
   }
 
