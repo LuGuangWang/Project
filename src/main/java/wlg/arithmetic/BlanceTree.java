@@ -14,8 +14,8 @@ public class BlanceTree {
 	public static void main(String[] args) {
 		BlanceTree b = new BlanceTree();
 		Tree root = b.buildTree();
-//		int d = b.deep(root);
-//		System.out.println("\ndeep:" + d );
+		int d = b.deep(root);
+		System.out.println("\ndeep:" + d );
 		AtomicInteger deep = new AtomicInteger(0);
 		boolean res = b.isBalance(root, deep);
 		System.out.println("is balence tree: " + res);
@@ -65,6 +65,7 @@ public class BlanceTree {
 		root.left=left;
 		left.righ = new Tree(4);
 		left.left = new Tree(3);
+		left.righ.left = new Tree(6);
 		return root;
 	}
 	

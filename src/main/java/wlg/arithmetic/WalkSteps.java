@@ -6,6 +6,7 @@ import java.util.Stack;
  * 有n阶台阶，一次可走1阶或2阶，请问有多少种走法
  */
 public class WalkSteps {
+
   //假设10个台阶
   private final int target = 10;
   

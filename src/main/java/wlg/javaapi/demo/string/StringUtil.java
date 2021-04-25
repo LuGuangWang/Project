@@ -63,7 +63,7 @@ public class StringUtil {
 //    compareValue();
 //    replaceChinese();
 //    splitStr();
-    matchTO();
+    isChinese("");
 //    replaceSpot();
 //    matchDate();
   }

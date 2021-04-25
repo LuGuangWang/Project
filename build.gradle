@@ -1,6 +1,7 @@
 buildscript {
 	 repositories {
-        mavenCentral()
+         // mavenCentral()
+         maven { url "http://artifactory.intra.xiaojukeji.com:80/artifactory/libs-release" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
@@ -12,8 +13,8 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 repositories {
-    mavenCentral()
-    maven { url "https://repo.spring.io/libs-release" }
+    // mavenCentral()
+    maven { url "http://artifactory.intra.xiaojukeji.com:80/artifactory/libs-release" }
 }
 
 sourceCompatibility = 1.8
@@ -21,8 +22,6 @@ targetCompatibility = 1.8
 
 dependencies {
     compile "joda-time:joda-time:2.2"
-    compile "org.apache.poi:poi:3.12"
-    compile "org.apache.poi:poi-ooxml:3.12"
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-aop"
     compile "org.springframework.boot:spring-boot-starter-thymeleaf"

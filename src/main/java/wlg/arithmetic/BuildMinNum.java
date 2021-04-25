@@ -19,19 +19,31 @@ public class BuildMinNum {
 		for(int e:nums) {
 			strs.add(String.valueOf(e));
 		}
-		strs.sort((a,b)->{
-			int s1 = Integer.parseInt(a+b);
-			int s2 = Integer.parseInt(b+a);
-			return s1 - s2;
-		});
+
+		System.out.println(strs);
+
+//		strs.sort((a,b)->{
+//			int s1 = Integer.parseInt(a+b);
+//			int s2 = Integer.parseInt(b+a);
+//			return s1 - s2;
+//		});
+
+		strs.sort((a,b)->(a+b).compareTo(b+a));
+
+		System.out.println(strs);
+
 		for(String s:strs) {
 			res.append(s);
 		}
 		return res.toString();
 	}
+
+
+
+
 	
 	public static void main(String[] args) {
-		int[] nums = {3,32,321};
+		int[] nums = {3,32,321,1};
 		String res = buildMinNum(nums);
 		System.out.println(res);
 	}

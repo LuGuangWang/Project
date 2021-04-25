@@ -18,7 +18,7 @@ public class LinkedSkip {
       tmp = tmp.next;
     }
     
-    instance.skipLinked(head, h.next);
+    instance.skipLinked1(head, h.next);
     
     System.out.println("\n操作后的顺序：");
     while(head!=null){

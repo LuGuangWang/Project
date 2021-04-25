@@ -7,14 +7,14 @@ package wlg.arithmetic;
  */
 public class GetStrWord {
     public static void main(String[] args) {
-        String s = "hello   word  ";
+        String s = "helloo   word  ";
         char[] chrs = s.toCharArray();
         StringBuilder res = new StringBuilder();
         String ress = null;
 
         res.append(' ');
         for(int i=0;i<chrs.length;i++){
-            if(chrs[i] != ' '){
+            if(chrs[i] != res.charAt(0)){
                 res.append(chrs[i]);
             }else if(res.charAt(res.length()-1) != chrs[i]){
                 res.append(chrs[i]);

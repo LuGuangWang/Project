@@ -19,7 +19,6 @@ public class MergeSort {
         int[] leftNums = mergeSort(nums,low,mid);
         int[] rightNums = mergeSort(nums,mid+1,high);
 
-
         return mergeNums(leftNums,rightNums);
 
     }
