@@ -22,10 +22,10 @@ public class CountDigitOne {
         int round = n;
 
         while(round>0){
-            int weight = round%10;
+            int weight = round % 10;
             round /= 10;
             count += round * base;
-            if(weight==1)
+            if(weight == 1)
                 count += (n % base) + 1;
             else if(weight>1)
                 count += base;
